@@ -36,6 +36,11 @@ extern uint64_t pebs_start_cpu;
 extern uint64_t scanning_thread_cpu;
 extern uint64_t migration_thread_cpu;
 
+// custom hemem-boost extern variables
+extern bool var1;
+extern uint64_t var2;
+extern uint64_t var3;
+
 #define COOL_IN_PLACE
 //#define SAMPLE_BASED_COOLING
 //#define SAMPLE_COOLING_THRESHOLD 10000

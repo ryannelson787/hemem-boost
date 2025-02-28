@@ -24,6 +24,10 @@ uint64_t pebs_start_cpu;
 uint64_t migration_thread_cpu;
 uint64_t scanning_thread_cpu;
 
+bool var1 = true;
+uint64_t var2 = 420;
+uint64_t var3 = 69;
+
 static struct fifo_list dram_hot_list;
 static struct fifo_list dram_cold_list;
 static struct fifo_list nvm_hot_list;

@@ -21,6 +21,17 @@ void (*libc_free)(void* ptr) = NULL;
 
 static int mmap_filter(void *addr, size_t length, int prot, int flags, int fd, off_t offset, uint64_t *result)
 {
+  // if fd = -420, that is our special dummy mmap call to "talk" to hemem, disregard all regular decisions regarding hemem
+  if (fd == -420) {
+	int temp1 = length;
+	int temp2 = prot;
+	int temp3 = flags;
+	// maybe even offset but idk
+
+	// not a real mmap call, so just say "we handled the mmap" and return success
+	return 0;
+  }
+
   //ensure_init();
   if (!is_init) {
     //LOG("hemem interpose: calling libc mmap due to hemem init in progress\n");
