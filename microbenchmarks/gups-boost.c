@@ -360,9 +360,15 @@ int main(int argc, char **argv)
   p_hot = (void **)malloc(threads * sizeof(void *));
   p_cold = (void **)malloc(threads * sizeof(void *));
 
+  /*
   int hot_over_total_ratio = 1 / ((unsigned long)(1) << (expt - log_hot_size));
   int size_of_hot_region = (size / threads) * hot_over_total_ratio;
   int size_of_cold_region = (size / threads) * (1 - hot_over_total_ratio);
+  */
+
+  double hot_over_total_ratio = 1.0 / ((1UL) << (expt - log_hot_size));
+  unsigned long size_of_hot_region = (unsigned long)((size / threads) * hot_over_total_ratio);
+  unsigned long size_of_cold_region = (unsigned long)((size / threads) * (1.0 - hot_over_total_ratio));
 
   for (i = 0; i < threads; i++) {
 	p_hot[i] = mmap(NULL, size_of_hot_region, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS | MAP_HUGETLB | MAP_POPULATE, -1, 0);
