@@ -8,6 +8,8 @@
 *.pdf
 *.py
 microbenchmarks/gups
+microbenchmarks/gups-boost
+microbenchmarks/gups-boost-hints
 microbenchmarks/gups-pebs
 microbenchmarks/gups-lru
 microbenchmarks/gups-simple
