@@ -185,6 +185,8 @@ struct hemem_page {
   UT_hash_handle hh;
   struct hemem_page *next, *prev;
   struct fifo_list *list;
+
+  bool enforced;  // 1 = Cannot be evicted from DRAM, 0 = Normal page
 };
 
 static inline uint64_t pt_to_pagesize(enum pagetypes pt)
@@ -233,6 +235,15 @@ void hemem_stop_timing(void);
 
 #ifdef __cplusplus
 }
+#endif
+
+#ifndef HEMEM_HINTS_H
+#define HEMEM_HINTS_H
+
+extern int user_hint_tier; // -1: default, 0: DRAM, 1: NVM
+extern int user_hint_persistence; // 0: Flexible, 1: Enforced
+extern int user_hint_priority; // 0: Cold, 1: Hot
+
 #endif
 
 #endif /* HEMEM_H */
