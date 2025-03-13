@@ -640,8 +640,9 @@ void *pebs_policy_thread()
           break;
         }
 
-        // no free dram page, try to find a cold dram page to move down
+        //no free dram page, try to find a cold dram page to move down
         cp = dequeue_fifo(&dram_cold_list);
+ 
         if (cp == NULL) {
           // all dram pages are hot, so put it back in list we got it from
           enqueue_fifo(&nvm_hot_list, p);
@@ -736,14 +737,110 @@ static struct hemem_page* pebs_allocate_page()
   assert(!"Out of memory");
 }
 
+static struct hemem_page* user_hinted_dram_pebs_allocate_page()
+{
+  struct timeval start, end;
+  struct hemem_page *page;
+  struct hemem_page *cold_page;
+  struct hemem_page *free_nvm_page;
+  uint64_t old_offset;
+
+  gettimeofday(&start, NULL);
+
+  // Try to allocate from DRAM if we are lucky; all good
+  page = dequeue_fifo(&dram_free_list);
+  if (page != NULL) {
+    assert(page->in_dram);
+    assert(!page->present);
+
+    page->present = true;
+
+    if (user_hint_priority == 1) {  
+          enqueue_fifo(&dram_hot_list, page);  // High-priority -> Hot queue
+    } else {
+          enqueue_fifo(&dram_cold_list, page);  // Default -> Cold queue
+      }
+
+    gettimeofday(&end, NULL);
+    LOG_TIME("mem_policy_allocate_page: %f s\n", elapsed(&start, &end));
+
+    //reset the hint
+    user_hint_tier = -1;
+    user_hint_priority = -1;
+
+    return page;
+  }
+
+  // DRAM is full: Try migrating a cold page from DRAM to NVM
+  //        https://bitbucket.org/ajaustin/hemem/src/daef82cc333f2e404a80d3be9e42638384f987b7/src/pebs.c#lines-640
+
+  cold_page = dequeue_fifo(&dram_cold_list);  
+
+  free_nvm_page = dequeue_fifo(&nvm_free_list);
+
+  if (cold_page != NULL && free_nvm_page != NULL) {
+    old_offset = cold_page->devdax_offset;
+
+    // Move the cold DRAM page to NVM
+    pebs_migrate_down(cold_page, free_nvm_page->devdax_offset);
+
+    // Update metadata
+    free_nvm_page->devdax_offset = old_offset;
+    free_nvm_page->in_dram = true;
+    free_nvm_page->present = false;
+    free_nvm_page->hot = false;
+
+    for (int i = 0; i < NPBUFTYPES; i++) {
+      free_nvm_page->accesses[i] = 0;
+      free_nvm_page->tot_accesses[i] = 0;
+    }
+
+    // Reinsert pages in respective free lists
+    enqueue_fifo(&nvm_cold_list, cold_page);
+    enqueue_fifo(&dram_free_list, free_nvm_page);
+
+    // Now, retry DRAM allocation
+    page = dequeue_fifo(&dram_free_list);
+    if (page != NULL) {
+      assert(page->in_dram);
+      assert(!page->present);
+
+      page->present = true;
+
+      if (user_hint_priority == 1) {  // High-priority data
+          enqueue_fifo(&dram_hot_list, page);
+      } else {  // Default: Cold queue
+          enqueue_fifo(&dram_cold_list, page);
+}
+
+      gettimeofday(&end, NULL);
+      LOG_TIME("mem_policy_allocate_page: %f s\n", elapsed(&start, &end));
+
+      user_hint_tier = -1;  // Reset hint
+      user_hint_priority = -1; // Reset hint
+      return page;
+    }
+  }
+
+  // we ran out of space
+  assert(!"Out of memory");
+}
+
 struct hemem_page* pebs_pagefault(void)
 {
   struct hemem_page *page;
 
   // do the heavy lifting of finding the devdax file offset to place the page
-  page = pebs_allocate_page();
-  assert(page != NULL);
 
+  //if user requested DRAM explicitly
+  if (user_hint_tier == 0){
+    page = user_hinted_dram_pebs_allocate_page();
+  }
+  //Fallback to normal way
+  else {
+  page = pebs_allocate_page();
+  }
+  assert(page != NULL);
   return page;
 }
 

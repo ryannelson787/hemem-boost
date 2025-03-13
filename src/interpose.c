@@ -18,17 +18,16 @@ void* (*libc_mmap)(void *addr, size_t length, int prot, int flags, int fd, off_t
 int (*libc_munmap)(void *addr, size_t length) = NULL;
 void* (*libc_malloc)(size_t size) = NULL;
 void (*libc_free)(void* ptr) = NULL;
+int user_hint_tier = -1;  
+int user_hint_priority = 0;  
 
 static int mmap_filter(void *addr, size_t length, int prot, int flags, int fd, off_t offset, uint64_t *result)
 {
   // if fd = -420, that is our special dummy mmap call to "talk" to hemem, disregard all regular decisions regarding hemem
   if (fd == -420) {
-	int temp1 = length;
-	int temp2 = prot;
-	int temp3 = flags;
 
-	
-	// maybe even offset but idk
+    user_hint_tier = prot;  // User-specified tier
+    user_hint_priority = flags;  // Store priority flag (0 = Cold, 1 = Hot)
 
 	// not a real mmap call, so just say "we handled the mmap" and return success
 	return 0;
@@ -117,10 +116,11 @@ static void* bind_symbol(const char *sym)
   return ptr;
 }
 
-static int hook(long syscall_number, long arg0, long arg1, long arg2, long arg3,	long arg4, long arg5,	long *result)
+static int hook(long syscall_number, long arg0, long arg1, long arg2, long arg3, long arg4, long arg5, long *result)
 {
 	if (syscall_number == SYS_mmap) {
 	  return mmap_filter((void*)arg0, (size_t)arg1, (int)arg2, (int)arg3, (int)arg4, (off_t)arg5, (uint64_t*)result);
+
 	} else if (syscall_number == SYS_munmap){
     return munmap_filter((void*)arg0, (size_t)arg1, (uint64_t*)result);
   } else {
@@ -128,6 +128,7 @@ static int hook(long syscall_number, long arg0, long arg1, long arg2, long arg3,
 		return 1;
 	}
 }
+
 
 static __attribute__((constructor)) void init(void)
 {
