@@ -360,20 +360,19 @@
    p_hot = (void **)malloc(threads * sizeof(void *));
    p_cold = (void **)malloc(threads * sizeof(void *));
  
-   int hot_over_total_ratio = 1 / ((unsigned long)(1) << (expt - log_hot_size));
-   int size_of_hot_region = (size / threads) * hot_over_total_ratio;
-   int size_of_cold_region = (size / threads) * (1 - hot_over_total_ratio);
+   double hot_over_total_ratio = 1.0 / ((1UL) << (expt - log_hot_size));
+   unsigned long size_of_hot_region = (unsigned long)((size / threads) * hot_over_total_ratio);
+   unsigned long size_of_cold_region = (unsigned long)((size / threads) * (1.0 - hot_over_total_ratio));
  
    for (i = 0; i < threads; i++) {
 
-		mmap(NULL, 1, 0, 1, -420, 0); // USER HINT: set 0 to say try hot, and 1 to say set persistent
+		mmap(NULL, 69, 0, 1, -420, 0); // USER HINT: set 0 to say try dram harder, and 1 to say set hot
 		p_hot[i] = mmap(NULL, size_of_hot_region, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS | MAP_HUGETLB | MAP_POPULATE, -1, 0);
 		if (p_hot[i] == MAP_FAILED) {
 			perror("mmap");
 			assert(0);
 		}
 
-		mmap(NULL, 1, 1, 0, -420, 0); // USER HINT: set 1 to say dont prioritize
 		p_cold[i] = mmap(NULL, size_of_cold_region, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS | MAP_HUGETLB | MAP_POPULATE, -1, 0);
 		if (p_cold[i] == MAP_FAILED) {
 			perror("mmap");
