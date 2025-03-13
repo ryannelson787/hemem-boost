@@ -249,11 +249,6 @@ void *pebs_scan_thread()
 
 static void pebs_migrate_down(struct hemem_page *page, uint64_t offset)
 {
-  if (page->enforced) {
-        LOG("Skipping migration: Page is enforced in DRAM\n");
-        return;  // Do not move enforced pages
-  }
-
   struct timeval start, end;
 
   gettimeofday(&start, NULL);
@@ -645,13 +640,8 @@ void *pebs_policy_thread()
           break;
         }
 
-        // no free dram page, try to find a cold dram page to move down
-        // cp = dequeue_fifo(&dram_cold_list);
- 
-        // Try to find a cold DRAM page, but skip enforced ones
-        do {
-            cp = dequeue_fifo(&dram_cold_list);
-        } while (cp != NULL && cp->enforced);
+        //no free dram page, try to find a cold dram page to move down
+        cp = dequeue_fifo(&dram_cold_list);
  
         if (cp == NULL) {
           // all dram pages are hot, so put it back in list we got it from
@@ -764,7 +754,7 @@ static struct hemem_page* user_hinted_dram_pebs_allocate_page()
     assert(!page->present);
 
     page->present = true;
-    page->enforced = (user_hint_persistence == 1);
+
     if (user_hint_priority == 1) {  
           enqueue_fifo(&dram_hot_list, page);  // High-priority -> Hot queue
     } else {
@@ -784,9 +774,7 @@ static struct hemem_page* user_hinted_dram_pebs_allocate_page()
   // DRAM is full: Try migrating a cold page from DRAM to NVM
   //        https://bitbucket.org/ajaustin/hemem/src/daef82cc333f2e404a80d3be9e42638384f987b7/src/pebs.c#lines-640
 
-  do {
-        cold_page = dequeue_fifo(&dram_cold_list);  
-    } while (cold_page != NULL && cold_page->enforced); // Skip enforced pages
+  cold_page = dequeue_fifo(&dram_cold_list);  
 
   free_nvm_page = dequeue_fifo(&nvm_free_list);
 
@@ -818,7 +806,6 @@ static struct hemem_page* user_hinted_dram_pebs_allocate_page()
       assert(!page->present);
 
       page->present = true;
-      page->enforced = (user_hint_persistence == 1);
 
       if (user_hint_priority == 1) {  // High-priority data
           enqueue_fifo(&dram_hot_list, page);
