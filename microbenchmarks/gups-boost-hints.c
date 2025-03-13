@@ -532,13 +532,14 @@
  
    for (i = 0; i < threads; i++) {
 	 //free(ga[i]->indices);
+	 munmap(ga[i]->hot_field, ga[i]->size_of_hot);
+	 munmap(ga[i]->cold_field, ga[i]->size_of_cold);
+
 	 free(ga[i]);
    }
    free(ga);
  
    //getchar();
- 
-   munmap(p, size);
  
    return 0;
  }
