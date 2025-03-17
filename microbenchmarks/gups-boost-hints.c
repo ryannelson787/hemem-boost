@@ -93,44 +93,44 @@
  
  static inline uint64_t get_nanos(void)
  {
-	 struct timespec ts;
-	 clock_gettime(CLOCK_MONOTONIC_RAW, &ts);
-	 return (uint64_t) ts.tv_sec * SEC_TO_NS + ts.tv_nsec;
+     struct timespec ts;
+     clock_gettime(CLOCK_MONOTONIC_RAW, &ts);
+     return (uint64_t) ts.tv_sec * SEC_TO_NS + ts.tv_nsec;
  }
  
  static inline void record_latency(uint64_t thread, uint64_t nanos)
  {
-	 size_t bucket = (nanos - HIST_START_NS) / HIST_BUCKET_NS;
-	 if (bucket >= HIST_BUCKETS) {
-		 bucket = HIST_BUCKETS - 1;
-	 }
-	 thread_hist[thread][bucket]++;
-	 /*__sync_fetch_and_add(&c->hist[bucket], 1)*/;
+     size_t bucket = (nanos - HIST_START_NS) / HIST_BUCKET_NS;
+     if (bucket >= HIST_BUCKETS) {
+         bucket = HIST_BUCKETS - 1;
+     }
+     thread_hist[thread][bucket]++;
+     /*__sync_fetch_and_add(&c->hist[bucket], 1)*/;
  }
  
  static inline void hist_fract_buckets(uint32_t *hist, uint64_t total,
-		 double *fracs, size_t *idxs, size_t num)
+         double *fracs, size_t *idxs, size_t num)
  {
-	 size_t i, j;
-	 uint64_t sum = 0, goals[num];
-	 for (j = 0; j < num; j++) {
-		 goals[j] = total * fracs[j];
-	 }
-	 for (i = 0, j = 0; i < HIST_BUCKETS && j < num; i++) {
-		 sum += hist[i];
-		 for (; j < num && sum >= goals[j]; j++) {
-			 idxs[j] = i;
-		 }
-	 }
+     size_t i, j;
+     uint64_t sum = 0, goals[num];
+     for (j = 0; j < num; j++) {
+         goals[j] = total * fracs[j];
+     }
+     for (i = 0, j = 0; i < HIST_BUCKETS && j < num; i++) {
+         sum += hist[i];
+         for (; j < num && sum >= goals[j]; j++) {
+             idxs[j] = i;
+         }
+     }
  }
  
  static inline int hist_value(size_t i)
  {
-	 if (i == HIST_BUCKETS - 1) {
-		 return -1;
-	 }
+     if (i == HIST_BUCKETS - 1) {
+         return -1;
+     }
  
-	 return i * HIST_BUCKET_NS + HIST_START_NS;
+     return i * HIST_BUCKET_NS + HIST_START_NS;
  }
  
  uint32_t *hist, *glbl_hist;
@@ -150,49 +150,49 @@
    fflush(stderr);
    tot = fopen(log_filename, "w");
    if (tot == NULL) {
-	 perror("fopen");
+     perror("fopen");
    }
  
    for (;;) {
-	 tot_gups = 0;
-	 msg_total = 0;
-	 for (int i = 0; i < threads; i++) {
-	   tot_gups += thread_gups[i];
+     tot_gups = 0;
+     msg_total = 0;
+     for (int i = 0; i < threads; i++) {
+       tot_gups += thread_gups[i];
  
-	   for (int j = 0; j < HIST_BUCKETS; j++) {
-		 hx = thread_hist[i][j];
-		 msg_total += hx;
-		 hist[j] += hx;
-		 if (current_runtime >= warmup_runtime) {
-		   glbl_hist[j] += hx;
-		 }
-		 thread_hist[i][j] = 0;
-	   }
-	 }
-	 fprintf(tot, "%ld\t%.10f\t", rdtscp(), (1.0 * (abs(tot_gups - tot_last_second_gups))) / (1.0e9));
-	 fprintf(stdout, "%ld\t%.10f\t", rdtscp(), (1.0 * (abs(tot_gups - tot_last_second_gups))) / (1.0e9));
-	 tot_updates += abs(tot_gups - tot_last_second_gups);
-	 tot_last_second_gups = tot_gups;
+       for (int j = 0; j < HIST_BUCKETS; j++) {
+         hx = thread_hist[i][j];
+         msg_total += hx;
+         hist[j] += hx;
+         if (current_runtime >= warmup_runtime) {
+           glbl_hist[j] += hx;
+         }
+         thread_hist[i][j] = 0;
+       }
+     }
+     fprintf(tot, "%ld\t%.10f\t", rdtscp(), (1.0 * (abs(tot_gups - tot_last_second_gups))) / (1.0e9));
+     fprintf(stdout, "%ld\t%.10f\t", rdtscp(), (1.0 * (abs(tot_gups - tot_last_second_gups))) / (1.0e9));
+     tot_updates += abs(tot_gups - tot_last_second_gups);
+     tot_last_second_gups = tot_gups;
  
-	 hist_fract_buckets(hist, msg_total, fracs, fracs_pos,
-				 sizeof(fracs) / sizeof(fracs[0]));
+     hist_fract_buckets(hist, msg_total, fracs, fracs_pos,
+                 sizeof(fracs) / sizeof(fracs[0]));
  
-	 fprintf(tot, "50p=%d ns\t90p=%d ns\t95p=%d ns\t"
-			"99p=%d ns\t99.9p=%d ns\t99.99p=%d ns \n",
-			hist_value(fracs_pos[0]), hist_value(fracs_pos[1]),
-			hist_value(fracs_pos[2]), hist_value(fracs_pos[3]),
-			hist_value(fracs_pos[4]), hist_value(fracs_pos[5]));
-	 fflush(tot);
-	 fprintf(stdout, "50p=%d ns\t90p=%d ns\t95p=%d ns\t"
-			"99p=%d ns\t99.9p=%d ns\t99.99p=%d ns \n",
-			hist_value(fracs_pos[0]), hist_value(fracs_pos[1]),
-			hist_value(fracs_pos[2]), hist_value(fracs_pos[3]),
-			hist_value(fracs_pos[4]), hist_value(fracs_pos[5]));
-	 fflush(stdout);
-	 memset(hist, 0, sizeof(*hist) * HIST_BUCKETS);
+     fprintf(tot, "50p=%d ns\t90p=%d ns\t95p=%d ns\t"
+            "99p=%d ns\t99.9p=%d ns\t99.99p=%d ns \n",
+            hist_value(fracs_pos[0]), hist_value(fracs_pos[1]),
+            hist_value(fracs_pos[2]), hist_value(fracs_pos[3]),
+            hist_value(fracs_pos[4]), hist_value(fracs_pos[5]));
+     fflush(tot);
+     fprintf(stdout, "50p=%d ns\t90p=%d ns\t95p=%d ns\t"
+            "99p=%d ns\t99.9p=%d ns\t99.99p=%d ns \n",
+            hist_value(fracs_pos[0]), hist_value(fracs_pos[1]),
+            hist_value(fracs_pos[2]), hist_value(fracs_pos[3]),
+            hist_value(fracs_pos[4]), hist_value(fracs_pos[5]));
+     fflush(stdout);
+     memset(hist, 0, sizeof(*hist) * HIST_BUCKETS);
  
-	 ++current_runtime;
-	 sleep(1);
+     ++current_runtime;
+     sleep(1);
    }
  
    return NULL;
@@ -233,8 +233,8 @@
    CPU_SET(start_cpu + args->tid, &cpuset);
    int s = pthread_setaffinity_np(thread, sizeof(cpu_set_t), &cpuset);
    if (s != 0) {
-	 perror("pthread_setaffinity_np");
-	 assert(0);
+     perror("pthread_setaffinity_np");
+     assert(0);
    }
    fprintf(stderr, "pinned thread %d to core %d\n", args->tid, start_cpu + args->tid);
  
@@ -248,30 +248,30 @@
   // fprintf(hotsetfile, "Thread %d region: %p - %p\thot set: %p - %p\n", args->tid, field, field + (args->size * elt_size), field + args->hot_start, field + args->hot_start + (args->hotsize * elt_size));   
  
    for (i = 0; i < iters || iters == 0; i++) {
-	 start = get_nanos();
-	 lfsr = lfsr_fast(lfsr);
-	 if (lfsr % 100 < 90) {
-	   lfsr = lfsr_fast(lfsr);
-	   index1 = args->hot_start + (lfsr % hotsize);
-	   uint64_t tmp = hot_field[index1];
-	   tmp = tmp + i;
-	   hot_field[index1] = tmp;
-	 }
-	 else {
-	   lfsr = lfsr_fast(lfsr);
-	   index2 = lfsr % (args->size_of_cold);
-	   uint64_t tmp = cold_field[index2];
-	   tmp = tmp + i;
-	   cold_field[index2] = tmp;
-	 }
-	 end = get_nanos();
-	 record_latency(args->tid, end - start);
-	 if (i % 1000 == 0) {
-	   thread_gups[args->tid] += 1000;
-	 }
+     start = get_nanos();
+     lfsr = lfsr_fast(lfsr);
+     if (lfsr % 100 < 90) {
+       lfsr = lfsr_fast(lfsr);
+       index1 = args->hot_start + (lfsr % args->size_of_hot);
+       uint64_t tmp = hot_field[index1];
+       tmp = tmp + i;
+       hot_field[index1] = tmp;
+     }
+     else {
+       lfsr = lfsr_fast(lfsr);
+       index2 = lfsr % (args->size_of_cold);
+       uint64_t tmp = cold_field[index2];
+       tmp = tmp + i;
+       cold_field[index2] = tmp;
+     }
+     end = get_nanos();
+     record_latency(args->tid, end - start);
+     if (i % 1000 == 0) {
+       thread_gups[args->tid] += 1000;
+     }
  #ifdef IGNORE_STRAGGLERS
-	 if(done_gups)
-	   break;
+     if(done_gups)
+       break;
  #endif
    }
    done_gups = true;
@@ -314,22 +314,22 @@
    signal(SIGUSR2, kill_gups);
  
    if (argc < 6) {
-	 fprintf(stderr, "Usage: %s [threads] [updates per thread] [exponent] [data size (bytes)] [noremap/remap] [wait] [instantaneous_filename]\n", argv[0]);
-	 fprintf(stderr, "  threads\t\t\tnumber of threads to launch\n");
-	 fprintf(stderr, "  updates per thread\t\tnumber of updates per thread (0 = unlimited)\n");
-	 fprintf(stderr, "  exponent\t\t\tlog size of region\n");
-	 fprintf(stderr, "  data size\t\t\tsize of data in array (in bytes)\n");
-	 fprintf(stderr, "  hot size\t\t\tlog size of hot set\n");
-	 fprintf(stderr, "  wait\t\t\twait for signal to start GUPS [1=true, default 0]\n");
-	 fprintf(stderr, "  log filename\t\t\tthe filename of instantaneous gups.\n");
-	 return 0;
+     fprintf(stderr, "Usage: %s [threads] [updates per thread] [exponent] [data size (bytes)] [noremap/remap] [wait] [instantaneous_filename]\n", argv[0]);
+     fprintf(stderr, "  threads\t\t\tnumber of threads to launch\n");
+     fprintf(stderr, "  updates per thread\t\tnumber of updates per thread (0 = unlimited)\n");
+     fprintf(stderr, "  exponent\t\t\tlog size of region\n");
+     fprintf(stderr, "  data size\t\t\tsize of data in array (in bytes)\n");
+     fprintf(stderr, "  hot size\t\t\tlog size of hot set\n");
+     fprintf(stderr, "  wait\t\t\twait for signal to start GUPS [1=true, default 0]\n");
+     fprintf(stderr, "  log filename\t\t\tthe filename of instantaneous gups.\n");
+     return 0;
    }
  
    gettimeofday(&starttime, NULL);
  
    start_cpu_str = getenv("START_CPU");
    if (start_cpu_str != NULL) {
-	 start_cpu = atoi(start_cpu_str);
+     start_cpu = atoi(start_cpu_str);
    }
  
    threads = atoi(argv[1]);
@@ -349,7 +349,7 @@
    tot_hot_size = (unsigned long)(1) << log_hot_size;
  
    if(argc > 6 && atoi(argv[6]))
-	 wait_for_signal = true;
+     wait_for_signal = true;
    log_filename = argv[7];
  
    fprintf(stderr, "%lu updates per thread (%d threads)\n", updates, threads);
@@ -357,27 +357,30 @@
    fprintf(stderr, "%ld byte element size (%ld elements total)\n", elt_size, size / elt_size);
    fflush(stderr);
  
-   p_hot = (void **)malloc(threads * sizeof(void *));
-   p_cold = (void **)malloc(threads * sizeof(void *));
+   void *p_hot;
+   void *p_cold;
+ 
+   /*
+   int hot_over_total_ratio = 1 / ((unsigned long)(1) << (expt - log_hot_size));
+   int size_of_hot_region = (size / threads) * hot_over_total_ratio;
+   int size_of_cold_region = (size / threads) * (1 - hot_over_total_ratio);
+   */
  
    double hot_over_total_ratio = 1.0 / ((1UL) << (expt - log_hot_size));
-   unsigned long size_of_hot_region = (unsigned long)((size / threads) * hot_over_total_ratio);
-   unsigned long size_of_cold_region = (unsigned long)((size / threads) * (1.0 - hot_over_total_ratio));
+   unsigned long size_of_hot_region = (unsigned long)((size) * hot_over_total_ratio);
+   unsigned long size_of_cold_region = (unsigned long)((size) * (1.0 - hot_over_total_ratio));
  
-   for (i = 0; i < threads; i++) {
-
-		mmap(NULL, 69, 0, 1, -420, 0); // USER HINT: set 0 to say try dram harder, and 1 to say set hot
-		p_hot[i] = mmap(NULL, size_of_hot_region, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS | MAP_HUGETLB | MAP_POPULATE, -1, 0);
-		if (p_hot[i] == MAP_FAILED) {
-			perror("mmap");
-			assert(0);
-		}
-
-		p_cold[i] = mmap(NULL, size_of_cold_region, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS | MAP_HUGETLB | MAP_POPULATE, -1, 0);
-		if (p_cold[i] == MAP_FAILED) {
-			perror("mmap");
-			assert(0);
-		}
+   mmap(NULL, 0, 1, 1, -420, 0);
+   p_hot = mmap(NULL, size_of_hot_region, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS | MAP_HUGETLB | MAP_POPULATE, -1, 0);
+   if (p_hot == MAP_FAILED) {
+     perror("mmap");
+     assert(0);
+   }
+   mmap(NULL, 0, 0, 0, -420, 0);
+   p_cold = mmap(NULL, size_of_cold_region, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS | MAP_HUGETLB | MAP_POPULATE, -1, 0);
+   if (p_cold == MAP_FAILED) {
+     perror("mmap");
+     assert(0);
    }
  
    gettimeofday(&stoptime, NULL);
@@ -389,12 +392,15 @@
    fprintf(stderr, "Elements per thread: %lu\n", nelems);
    fflush(stderr);
  
+   unsigned long nhotelems = (unsigned long)(nelems * hot_over_total_ratio);
+   unsigned long ncoldelems = (unsigned long)(nelems * (1 - hot_over_total_ratio));
+ 
    //memset(thread_gups, 0, sizeof(thread_gups));
  
    hotsetfile = fopen("hotsets.txt", "w");
    if (hotsetfile == NULL) {
-	 perror("fopen");
-	 assert(0);
+     perror("fopen");
+     assert(0);
    }
  
    gettimeofday(&stoptime, NULL);
@@ -411,70 +417,71 @@
  
    hot_start = 0;
    hotsize = (tot_hot_size / threads) / elt_size;
+   unsigned long coldsize = ((size - tot_hot_size) / threads) / elt_size;
    //printf("hot_start: %p\thot_end: %p\thot_size: %lu\n", p + hot_start, p + hot_start + (hotsize * elt_size), hotsize);
  
    gettimeofday(&starttime, NULL);
    for (i = 0; i < threads; i++) {
-	 //printf("starting thread [%d]\n", i);
-	 ga[i] = (struct gups_args*)malloc(sizeof(struct gups_args));
-	 ga[i]->tid = i;
-	 ga[i]->hot_field = p_hot[i];
-	 ga[i]->cold_field = p_cold[i];
-	 ga[i]->size_of_hot = size_of_hot_region;
-	 ga[i]->size_of_cold = size_of_cold_region;
-	 ga[i]->iters = updates;
-	 ga[i]->size = nelems;
-	 ga[i]->elt_size = elt_size;
-	 ga[i]->hot_start = 0;        // hot set at start of thread's region
-	 thread_hist[i] = calloc(HIST_BUCKETS, sizeof(*thread_hist[i]));
-	 if (thread_hist[i] == NULL) {
-	   fprintf(stderr, "error allocating histogram for thread %d failed\n", i);
-	 }
-	 assert(thread_hist[i] != NULL);
+     //printf("starting thread [%d]\n", i);
+     ga[i] = (struct gups_args*)malloc(sizeof(struct gups_args));
+     ga[i]->tid = i;
+     ga[i]->hot_field = p_hot + (i * nhotelems * elt_size);
+     ga[i]->cold_field = p_cold + (i * ncoldelems * elt_size);
+       ga[i]->size_of_hot = hotsize;
+       ga[i]->size_of_cold = coldsize;
+     ga[i]->iters = updates;
+     ga[i]->size = nelems;
+     ga[i]->elt_size = elt_size;
+     ga[i]->hot_start = 0;        // hot set at start of thread's region
+     thread_hist[i] = calloc(HIST_BUCKETS, sizeof(*thread_hist[i]));
+     if (thread_hist[i] == NULL) {
+       fprintf(stderr, "error allocating histogram for thread %d failed\n", i);
+     }
+     assert(thread_hist[i] != NULL);
    }
  
    hist = calloc(HIST_BUCKETS, sizeof(*hist));
    glbl_hist = calloc(HIST_BUCKETS, sizeof(*glbl_hist));
    if (hist == NULL || glbl_hist == NULL) {
-	 fprintf(stderr, "error allocating global histogram\n");
+     fprintf(stderr, "error allocating global histogram\n");
    }
  
  
    if(updates != 0) {
-	 // run through gups once to touch all memory
-	 // spawn gups worker threads
-	 for (i = 0; i < threads; i++) {
-	   ga[i]->iters = updates * 2;
-	   int r = pthread_create(&t[i], NULL, do_gups, (void*)ga[i]);
-	   assert(r == 0);
-	 }
+     // run through gups once to touch all memory
+     // spawn gups worker threads
+     for (i = 0; i < threads; i++) {
+       ga[i]->iters = updates * 2;
+       int r = pthread_create(&t[i], NULL, do_gups, (void*)ga[i]);
+       assert(r == 0);
+     }
  
-	 // wait for worker threads
-	 for (i = 0; i < threads; i++) {
-	   int r = pthread_join(t[i], NULL);
-	   assert(r == 0);
-	 }
-	 //hemem_print_stats();
+     // wait for worker threads
+     for (i = 0; i < threads; i++) {
+       int r = pthread_join(t[i], NULL);
+       assert(r == 0);
+     }
+     //hemem_print_stats();
  
-	 gettimeofday(&stoptime, NULL);
+     gettimeofday(&stoptime, NULL);
  
-	 secs = elapsed(&starttime, &stoptime);
-	 printf("Elapsed time: %.4f seconds.\n", secs);
-	 gups = 0;
-	 for(int i = 0; i < threads; ++i)
-	   gups += completed_gups[i];
-	 gups /= (secs * 1.0e9);
-	 printf("GUPS = %.10f\n", gups);
-	 fflush(stdout);
+     secs = elapsed(&starttime, &stoptime);
+     printf("Elapsed time: %.4f seconds.\n", secs);
+     gups = 0;
+     for(int i = 0; i < threads; ++i)
+       gups += completed_gups[i];
+     gups /= (secs * 1.0e9);
+     printf("GUPS = %.10f\n", gups);
+     fflush(stdout);
    }
    filename = "indices2.txt";
  
    memset(thread_gups, 0, sizeof(thread_gups));
    /*
    if(wait_for_signal) {
-	 fprintf(stderr, "Waiting for signal\n");
-	 while(!received_signal);
-	 fprintf(stderr, "Received signal\n");
+     fprintf(stderr, "Waiting for signal\n");
+     while(!received_signal);
+     fprintf(stderr, "Received signal\n");
    }
    */
    pthread_t print_thread;
@@ -487,15 +494,15 @@
    //hemem_clear_stats();
    // spawn gups worker threads
    for (i = 0; i < threads; i++) {
-	 int r = pthread_create(&t[i], NULL, do_gups, (void*)ga[i]);
-	 assert(r == 0);
+     int r = pthread_create(&t[i], NULL, do_gups, (void*)ga[i]);
+     assert(r == 0);
    }
  
    // wait for worker threads
    for (i = 0; i < threads; i++) {
-	 ga[i]->iters = updates;
-	 int r = pthread_join(t[i], NULL);
-	 assert(r == 0);
+     ga[i]->iters = updates;
+     int r = pthread_join(t[i], NULL);
+     assert(r == 0);
    }
    gettimeofday(&stoptime, NULL);
    //hemem_print_stats();
@@ -505,15 +512,15 @@
    printf("Elapsed time: %.4f seconds.\n", secs);
    gups = 0;
    for(int i = 0; i < threads; ++i)
-	 gups += completed_gups[i];
+     gups += completed_gups[i];
    gups /= (secs * 1.0e9);
    printf("GUPS = %.10f\n", gups);
  
    for(i = 0; i < HIST_BUCKETS; ++i) {
-	 if(glbl_hist[i] != 0) {
-	   fprintf(stdout, "Hist[%d]=%d\n", i*HIST_BUCKET_NS, glbl_hist[i]);
-	   fflush(stdout);
-	 }
+     if(glbl_hist[i] != 0) {
+       fprintf(stdout, "Hist[%d]=%d\n", i*HIST_BUCKET_NS, glbl_hist[i]);
+       fflush(stdout);
+     }
    }
    //memset(thread_gups, 0, sizeof(thread_gups));
  
@@ -521,25 +528,25 @@
    FILE* pebsfile = fopen("pebs.txt", "w+");
    assert(pebsfile != NULL);
    for (uint64_t addr = (uint64_t)p; addr < (uint64_t)p + size; addr += (2*1024*1024)) {
-	 struct hemem_page *pg = get_hemem_page(addr);
-	 assert(pg != NULL);
-	 if (pg != NULL) {
-	   fprintf(pebsfile, "0x%lx:\t%lu\t%lu\t%lu\n", pg->va, pg->tot_accesses[DRAMREAD], pg->tot_accesses[NVMREAD], pg->tot_accesses[WRITE]);
-	 }
+     struct hemem_page *pg = get_hemem_page(addr);
+     assert(pg != NULL);
+     if (pg != NULL) {
+       fprintf(pebsfile, "0x%lx:\t%lu\t%lu\t%lu\n", pg->va, pg->tot_accesses[DRAMREAD], pg->tot_accesses[NVMREAD], pg->tot_accesses[WRITE]);
+     }
    }
  #endif
    //hemem_stop_timing();
  
    for (i = 0; i < threads; i++) {
-	 //free(ga[i]->indices);
-	 munmap(ga[i]->hot_field, ga[i]->size_of_hot);
-	 munmap(ga[i]->cold_field, ga[i]->size_of_cold);
-
-	 free(ga[i]);
+     //free(ga[i]->indices);
+     free(ga[i]);
    }
    free(ga);
  
    //getchar();
+
+   free(p_hot);
+   free(p_cold);
  
    return 0;
  }

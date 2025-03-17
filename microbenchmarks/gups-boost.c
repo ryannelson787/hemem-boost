@@ -252,7 +252,7 @@ static void *do_gups(void *arguments)
     lfsr = lfsr_fast(lfsr);
     if (lfsr % 100 < 90) {
       lfsr = lfsr_fast(lfsr);
-      index1 = args->hot_start + (lfsr % hotsize);
+      index1 = args->hot_start + (lfsr % args->size_of_hot);
       uint64_t tmp = hot_field[index1];
       tmp = tmp + i;
       hot_field[index1] = tmp;
@@ -357,8 +357,8 @@ int main(int argc, char **argv)
   fprintf(stderr, "%ld byte element size (%ld elements total)\n", elt_size, size / elt_size);
   fflush(stderr);
 
-  p_hot = (void **)malloc(threads * sizeof(void *));
-  p_cold = (void **)malloc(threads * sizeof(void *));
+  void *p_hot;
+  void *p_cold;
 
   /*
   int hot_over_total_ratio = 1 / ((unsigned long)(1) << (expt - log_hot_size));
@@ -367,20 +367,18 @@ int main(int argc, char **argv)
   */
 
   double hot_over_total_ratio = 1.0 / ((1UL) << (expt - log_hot_size));
-  unsigned long size_of_hot_region = (unsigned long)((size / threads) * hot_over_total_ratio);
-  unsigned long size_of_cold_region = (unsigned long)((size / threads) * (1.0 - hot_over_total_ratio));
+  unsigned long size_of_hot_region = (unsigned long)((size) * hot_over_total_ratio);
+  unsigned long size_of_cold_region = (unsigned long)((size) * (1.0 - hot_over_total_ratio));
 
-  for (i = 0; i < threads; i++) {
-	p_hot[i] = mmap(NULL, size_of_hot_region, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS | MAP_HUGETLB | MAP_POPULATE, -1, 0);
-	if (p_hot[i] == MAP_FAILED) {
-		perror("mmap");
-	  	assert(0);
-	}
-	p_cold[i] = mmap(NULL, size_of_cold_region, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS | MAP_HUGETLB | MAP_POPULATE, -1, 0);
-	if (p_cold[i] == MAP_FAILED) {
-		perror("mmap");
-	  	assert(0);
-	}
+  p_hot = mmap(NULL, size_of_hot_region, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS | MAP_HUGETLB | MAP_POPULATE, -1, 0);
+  if (p_hot == MAP_FAILED) {
+    perror("mmap");
+    assert(0);
+  }
+  p_cold = mmap(NULL, size_of_cold_region, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS | MAP_HUGETLB | MAP_POPULATE, -1, 0);
+  if (p_cold == MAP_FAILED) {
+    perror("mmap");
+    assert(0);
   }
 
   gettimeofday(&stoptime, NULL);
@@ -391,6 +389,9 @@ int main(int argc, char **argv)
   nelems = (size / threads) / elt_size; // number of elements per thread
   fprintf(stderr, "Elements per thread: %lu\n", nelems);
   fflush(stderr);
+
+  unsigned long nhotelems = (unsigned long)(nelems * hot_over_total_ratio);
+  unsigned long ncoldelems = (unsigned long)(nelems * (1 - hot_over_total_ratio));
 
   //memset(thread_gups, 0, sizeof(thread_gups));
 
@@ -414,6 +415,7 @@ int main(int argc, char **argv)
 
   hot_start = 0;
   hotsize = (tot_hot_size / threads) / elt_size;
+  unsigned long coldsize = ((size - tot_hot_size) / threads) / elt_size;
   //printf("hot_start: %p\thot_end: %p\thot_size: %lu\n", p + hot_start, p + hot_start + (hotsize * elt_size), hotsize);
 
   gettimeofday(&starttime, NULL);
@@ -421,10 +423,10 @@ int main(int argc, char **argv)
     //printf("starting thread [%d]\n", i);
     ga[i] = (struct gups_args*)malloc(sizeof(struct gups_args));
     ga[i]->tid = i;
-    ga[i]->hot_field = p_hot[i];
-    ga[i]->cold_field = p_cold[i];
-	ga[i]->size_of_hot = size_of_hot_region;
-	ga[i]->size_of_cold = size_of_cold_region;
+    ga[i]->hot_field = p_hot + (i * nhotelems * elt_size);
+    ga[i]->cold_field = p_cold + (i * ncoldelems * elt_size);
+	  ga[i]->size_of_hot = hotsize;
+	  ga[i]->size_of_cold = coldsize;
     ga[i]->iters = updates;
     ga[i]->size = nelems;
     ga[i]->elt_size = elt_size;
