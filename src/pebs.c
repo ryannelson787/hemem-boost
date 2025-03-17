@@ -765,8 +765,8 @@ static struct hemem_page* user_hinted_dram_pebs_allocate_page()
     LOG_TIME("mem_policy_allocate_page: %f s\n", elapsed(&start, &end));
 
     //reset the hint
-    user_hint_tier = -1;
-    user_hint_priority = -1;
+    // user_hint_tier = -1;
+    // user_hint_priority = -1;
 
     return page;
   }
@@ -816,8 +816,8 @@ static struct hemem_page* user_hinted_dram_pebs_allocate_page()
       gettimeofday(&end, NULL);
       LOG_TIME("mem_policy_allocate_page: %f s\n", elapsed(&start, &end));
 
-      user_hint_tier = -1;  // Reset hint
-      user_hint_priority = -1; // Reset hint
+      // user_hint_tier = -1;  // Reset hint
+      // user_hint_priority = -1; // Reset hint
       return page;
     }
   }

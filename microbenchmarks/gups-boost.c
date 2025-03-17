@@ -357,8 +357,8 @@ int main(int argc, char **argv)
   fprintf(stderr, "%ld byte element size (%ld elements total)\n", elt_size, size / elt_size);
   fflush(stderr);
 
-  void *p_hot;
-  void *p_cold;
+  // void *p_hot;
+  // void *p_cold;
 
   /*
   int hot_over_total_ratio = 1 / ((unsigned long)(1) << (expt - log_hot_size));

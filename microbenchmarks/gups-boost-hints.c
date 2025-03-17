@@ -306,8 +306,8 @@
    bool wait_for_signal = false;
    char *start_cpu_str;
  
-   void **p_hot;
-   void **p_cold;
+  //  void **p_hot;
+  //  void **p_cold;
  
    // Stop waiting on receiving signal
    signal(SIGUSR1, signal_handler);
