@@ -1,0 +1,112 @@
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+addr	/home/amanda/hemem/src/shared/hemem-shared.h	/^  void* addr;$/;"	m	language:C++	struct:alloc_request
+addr	/home/amanda/hemem/src/shared/hemem-shared.h	/^  void* addr;$/;"	m	language:C++	struct:free_request
+ADD_PROCESS	/home/amanda/hemem/src/shared/hemem-shared.h	/^  ADD_PROCESS = 2,$/;"	e	language:C++	enum:operation
+add_process_request	/home/amanda/hemem/src/shared/hemem-shared.h	/^struct add_process_request {$/;"	s	language:C++
+add_process_response	/home/amanda/hemem/src/shared/hemem-shared.h	/^struct add_process_response {$/;"	s	language:C++
+alloc_request	/home/amanda/hemem/src/shared/hemem-shared.h	/^struct alloc_request {$/;"	s	language:C++
+alloc_response	/home/amanda/hemem/src/shared/hemem-shared.h	/^struct alloc_response {$/;"	s	language:C++
+ALLOC_SPACE	/home/amanda/hemem/src/shared/hemem-shared.h	/^  ALLOC_SPACE = 0,$/;"	e	language:C++	enum:operation
+BASEP	/home/amanda/hemem/src/shared/hemem-shared.h	/^  BASEP = 1,$/;"	e	language:C++	enum:pagetypes
+BASEPAGE_MASK	/home/amanda/hemem/src/shared/hemem-shared.h	37;"	d	language:C++
+BASEPAGE_SIZE	/home/amanda/hemem/src/shared/hemem-shared.h	28;"	d	language:C++
+BASE_PFN_MASK	/home/amanda/hemem/src/shared/hemem-shared.h	41;"	d	language:C++
+devdax_offset	/home/amanda/hemem/src/shared/hemem-shared.h	/^  uint64_t devdax_offset;$/;"	m	language:C++	struct:hemem_page_app
+DRAMPATH	/home/amanda/hemem/src/shared/hemem-shared.h	25;"	d	language:C++
+DRAMSIZE	/home/amanda/hemem/src/shared/hemem-shared.h	20;"	d	language:C++
+FAILED	/home/amanda/hemem/src/shared/hemem-shared.h	/^  FAILED = 1,$/;"	e	language:C++	enum:status_code
+FASTMEM	/home/amanda/hemem/src/shared/hemem-shared.h	/^  FASTMEM = 0,$/;"	e	language:C++	enum:memtypes
+FASTMEM_PAGES	/home/amanda/hemem/src/shared/hemem-shared.h	34;"	d	language:C++
+free_request	/home/amanda/hemem/src/shared/hemem-shared.h	/^struct free_request {$/;"	s	language:C++
+free_response	/home/amanda/hemem/src/shared/hemem-shared.h	/^struct free_response {$/;"	s	language:C++
+FREE_SPACE	/home/amanda/hemem/src/shared/hemem-shared.h	/^  FREE_SPACE = 1,$/;"	e	language:C++	enum:operation
+GB	/home/amanda/hemem/src/shared/hemem-shared.h	12;"	d	language:C++
+GET_UFFD	/home/amanda/hemem/src/shared/hemem-shared.h	/^  GET_UFFD = 4,$/;"	e	language:C++	enum:operation
+get_uffd_request	/home/amanda/hemem/src/shared/hemem-shared.h	/^struct get_uffd_request {$/;"	s	language:C++
+get_uffd_response	/home/amanda/hemem/src/shared/hemem-shared.h	/^struct get_uffd_response {$/;"	s	language:C++
+GIGAPAGE_MASK	/home/amanda/hemem/src/shared/hemem-shared.h	39;"	d	language:C++
+GIGAPAGE_SIZE	/home/amanda/hemem/src/shared/hemem-shared.h	30;"	d	language:C++
+GIGA_PFN_MASK	/home/amanda/hemem/src/shared/hemem-shared.h	43;"	d	language:C++
+header	/home/amanda/hemem/src/shared/hemem-shared.h	/^  struct msg_header header; $/;"	m	language:C++	struct:add_process_request	typeref:struct:add_process_request::msg_header
+header	/home/amanda/hemem/src/shared/hemem-shared.h	/^  struct msg_header header;$/;"	m	language:C++	struct:add_process_response	typeref:struct:add_process_response::msg_header
+header	/home/amanda/hemem/src/shared/hemem-shared.h	/^  struct msg_header header;$/;"	m	language:C++	struct:alloc_request	typeref:struct:alloc_request::msg_header
+header	/home/amanda/hemem/src/shared/hemem-shared.h	/^  struct msg_header header;$/;"	m	language:C++	struct:alloc_response	typeref:struct:alloc_response::msg_header
+header	/home/amanda/hemem/src/shared/hemem-shared.h	/^  struct msg_header header;$/;"	m	language:C++	struct:free_request	typeref:struct:free_request::msg_header
+header	/home/amanda/hemem/src/shared/hemem-shared.h	/^  struct msg_header header;$/;"	m	language:C++	struct:free_response	typeref:struct:free_response::msg_header
+header	/home/amanda/hemem/src/shared/hemem-shared.h	/^  struct msg_header header;$/;"	m	language:C++	struct:get_uffd_request	typeref:struct:get_uffd_request::msg_header
+header	/home/amanda/hemem/src/shared/hemem-shared.h	/^  struct msg_header header;$/;"	m	language:C++	struct:get_uffd_response	typeref:struct:get_uffd_response::msg_header
+header	/home/amanda/hemem/src/shared/hemem-shared.h	/^  struct msg_header header;$/;"	m	language:C++	struct:record_remap_fd_request	typeref:struct:record_remap_fd_request::msg_header
+header	/home/amanda/hemem/src/shared/hemem-shared.h	/^  struct msg_header header;$/;"	m	language:C++	struct:record_remap_fd_response	typeref:struct:record_remap_fd_response::msg_header
+header	/home/amanda/hemem/src/shared/hemem-shared.h	/^  struct msg_header header;$/;"	m	language:C++	struct:remap_request	typeref:struct:remap_request::msg_header
+header	/home/amanda/hemem/src/shared/hemem-shared.h	/^  struct msg_header header;$/;"	m	language:C++	struct:remap_response	typeref:struct:remap_response::msg_header
+header	/home/amanda/hemem/src/shared/hemem-shared.h	/^  struct msg_header header;$/;"	m	language:C++	struct:remove_process_request	typeref:struct:remove_process_request::msg_header
+header	/home/amanda/hemem/src/shared/hemem-shared.h	/^  struct msg_header header;$/;"	m	language:C++	struct:remove_process_response	typeref:struct:remove_process_response::msg_header
+hememlogf	/home/amanda/hemem/src/shared/logging.c	/^FILE* hememlogf;$/;"	v	language:C++
+HEMEM_LOGGING_H	/home/amanda/hemem/src/shared/logging.h	2;"	d	language:C++
+hemem_page_app	/home/amanda/hemem/src/shared/hemem-shared.h	/^struct hemem_page_app {$/;"	s	language:C++
+HEMEM_SHARED_H	/home/amanda/hemem/src/shared/hemem-shared.h	2;"	d	language:C++
+HUGEP	/home/amanda/hemem/src/shared/hemem-shared.h	/^  HUGEP = 0,$/;"	e	language:C++	enum:pagetypes
+HUGEPAGE_MASK	/home/amanda/hemem/src/shared/hemem-shared.h	38;"	d	language:C++
+HUGEPAGE_SIZE	/home/amanda/hemem/src/shared/hemem-shared.h	29;"	d	language:C++
+HUGE_PFN_MASK	/home/amanda/hemem/src/shared/hemem-shared.h	42;"	d	language:C++
+INVALID_REQUEST	/home/amanda/hemem/src/shared/hemem-shared.h	/^  INVALID_REQUEST = 2,$/;"	e	language:C++	enum:status_code
+in_dram	/home/amanda/hemem/src/shared/hemem-shared.h	/^  bool in_dram;$/;"	m	language:C++	struct:hemem_page_app
+KB	/home/amanda/hemem/src/shared/hemem-shared.h	10;"	d	language:C++
+length	/home/amanda/hemem/src/shared/hemem-shared.h	/^  size_t length;$/;"	m	language:C++	struct:alloc_request
+length	/home/amanda/hemem/src/shared/hemem-shared.h	/^  size_t length;$/;"	m	language:C++	struct:free_request
+LOG	/home/amanda/hemem/src/shared/logging.h	10;"	d	language:C++
+log_init	/home/amanda/hemem/src/shared/logging.c	/^void log_init(const char* logname)$/;"	f	language:C++
+log_init	/home/amanda/hemem/src/shared/logging.h	/^void log_init(const char* log_name);$/;"	p	language:C++
+LOG_STATS	/home/amanda/hemem/src/shared/logging.h	33;"	d	language:C++
+log_time	/home/amanda/hemem/src/shared/logging.h	/^static inline void log_time(const char* fmt, ...)$/;"	f	language:C++
+LOG_TIME	/home/amanda/hemem/src/shared/logging.h	27;"	d	language:C++
+MAX_FAULT_PAGES	/home/amanda/hemem/src/shared/hemem-shared.h	45;"	d	language:C++
+MB	/home/amanda/hemem/src/shared/hemem-shared.h	11;"	d	language:C++
+memtypes	/home/amanda/hemem/src/shared/hemem-shared.h	/^enum memtypes {$/;"	g	language:C++
+MEM_BARRIER	/home/amanda/hemem/src/shared/hemem-shared.h	15;"	d	language:C++
+msg_header	/home/amanda/hemem/src/shared/hemem-shared.h	/^struct msg_header {$/;"	s	language:C++
+msg_size	/home/amanda/hemem/src/shared/hemem-shared.h	/^  size_t msg_size;$/;"	m	language:C++	struct:msg_header
+NMEMTYPES	/home/amanda/hemem/src/shared/hemem-shared.h	/^  NMEMTYPES,$/;"	e	language:C++	enum:memtypes
+NO_SPACE	/home/amanda/hemem/src/shared/hemem-shared.h	/^  NO_SPACE = 3$/;"	e	language:C++	enum:status_code
+NPAGETYPES	/home/amanda/hemem/src/shared/hemem-shared.h	/^  NPAGETYPES$/;"	e	language:C++	enum:pagetypes
+num_pages	/home/amanda/hemem/src/shared/hemem-shared.h	/^  size_t num_pages;$/;"	m	language:C++	struct:alloc_response
+num_pages	/home/amanda/hemem/src/shared/hemem-shared.h	/^  size_t num_pages;$/;"	m	language:C++	struct:remap_request
+NVMPATH	/home/amanda/hemem/src/shared/hemem-shared.h	26;"	d	language:C++
+NVMSIZE	/home/amanda/hemem/src/shared/hemem-shared.h	19;"	d	language:C++
+operation	/home/amanda/hemem/src/shared/hemem-shared.h	/^  enum operation operation;$/;"	m	language:C++	struct:msg_header	typeref:enum:msg_header::operation
+operation	/home/amanda/hemem/src/shared/hemem-shared.h	/^enum operation {$/;"	g	language:C++
+pages	/home/amanda/hemem/src/shared/hemem-shared.h	/^  struct hemem_page_app pages[];$/;"	m	language:C++	struct:alloc_response	typeref:struct:alloc_response::hemem_page_app
+pages	/home/amanda/hemem/src/shared/hemem-shared.h	/^  struct hemem_page_app pages[];$/;"	m	language:C++	struct:remap_request	typeref:struct:remap_request::hemem_page_app
+pagesize_to_pt	/home/amanda/hemem/src/shared/hemem-shared.h	/^static inline enum pagetypes pagesize_to_pt(uint64_t pagesize)$/;"	f	language:C++
+pagetypes	/home/amanda/hemem/src/shared/hemem-shared.h	/^enum pagetypes {$/;"	g	language:C++
+PAGE_ROUND_UP	/home/amanda/hemem/src/shared/hemem-shared.h	32;"	d	language:C++
+PAGE_SIZE	/home/amanda/hemem/src/shared/hemem-shared.h	31;"	d	language:C++
+pid	/home/amanda/hemem/src/shared/hemem-shared.h	/^  pid_t pid;$/;"	m	language:C++	struct:msg_header
+pt	/home/amanda/hemem/src/shared/hemem-shared.h	/^  enum pagetypes pt;$/;"	m	language:C++	struct:hemem_page_app	typeref:enum:hemem_page_app::pagetypes
+pt_to_pagesize	/home/amanda/hemem/src/shared/hemem-shared.h	/^static inline uint64_t pt_to_pagesize(enum pagetypes pt)$/;"	f	language:C++
+RECORD_REMAP_FD	/home/amanda/hemem/src/shared/hemem-shared.h	/^  RECORD_REMAP_FD = 6$/;"	e	language:C++	enum:operation
+record_remap_fd_request	/home/amanda/hemem/src/shared/hemem-shared.h	/^struct record_remap_fd_request {$/;"	s	language:C++
+record_remap_fd_response	/home/amanda/hemem/src/shared/hemem-shared.h	/^struct record_remap_fd_response {$/;"	s	language:C++
+REMAP_PAGES	/home/amanda/hemem/src/shared/hemem-shared.h	/^  REMAP_PAGES = 5,$/;"	e	language:C++	enum:operation
+remap_request	/home/amanda/hemem/src/shared/hemem-shared.h	/^struct remap_request {$/;"	s	language:C++
+remap_response	/home/amanda/hemem/src/shared/hemem-shared.h	/^struct remap_response {$/;"	s	language:C++
+REMOVE_PROCESS	/home/amanda/hemem/src/shared/hemem-shared.h	/^  REMOVE_PROCESS = 3,$/;"	e	language:C++	enum:operation
+remove_process_request	/home/amanda/hemem/src/shared/hemem-shared.h	/^struct remove_process_request {$/;"	s	language:C++
+remove_process_response	/home/amanda/hemem/src/shared/hemem-shared.h	/^struct remove_process_response {$/;"	s	language:C++
+req_dram	/home/amanda/hemem/src/shared/hemem-shared.h	/^  uint64_t req_dram;$/;"	m	language:C++	struct:add_process_request
+SLOWMEM	/home/amanda/hemem/src/shared/hemem-shared.h	/^  SLOWMEM = 1,$/;"	e	language:C++	enum:memtypes
+SLOWMEM_PAGES	/home/amanda/hemem/src/shared/hemem-shared.h	35;"	d	language:C++
+statsf	/home/amanda/hemem/src/shared/logging.c	/^FILE* statsf;$/;"	v	language:C++
+STATS_THREAD	/home/amanda/hemem/src/shared/logging.h	30;"	d	language:C++
+STATS_THREAD_CPU	/home/amanda/hemem/src/shared/hemem-shared.h	47;"	d	language:C++
+status	/home/amanda/hemem/src/shared/hemem-shared.h	/^  int status;$/;"	m	language:C++	struct:msg_header
+status_code	/home/amanda/hemem/src/shared/hemem-shared.h	/^enum status_code {$/;"	g	language:C++
+SUCCESS	/home/amanda/hemem/src/shared/hemem-shared.h	/^  SUCCESS = 0,$/;"	e	language:C++	enum:status_code
+target_miss_ratio	/home/amanda/hemem/src/shared/hemem-shared.h	/^  double target_miss_ratio;$/;"	m	language:C++	struct:add_process_request
+TB	/home/amanda/hemem/src/shared/hemem-shared.h	13;"	d	language:C++
+timef	/home/amanda/hemem/src/shared/logging.c	/^FILE* timef;$/;"	v	language:C++
+timing	/home/amanda/hemem/src/shared/logging.c	/^bool timing = false;$/;"	v	language:C++
+ucm_va	/home/amanda/hemem/src/shared/hemem-shared.h	/^  uint64_t ucm_va;$/;"	m	language:C++	struct:hemem_page_app
+uffd	/home/amanda/hemem/src/shared/hemem-shared.h	/^  long uffd;$/;"	m	language:C++	struct:get_uffd_request
+va	/home/amanda/hemem/src/shared/hemem-shared.h	/^  uint64_t va;$/;"	m	language:C++	struct:hemem_page_app
+zero	/home/amanda/hemem/src/shared/hemem-shared.h	/^  bool zero;$/;"	m	language:C++	struct:add_process_request

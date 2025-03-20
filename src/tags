@@ -1,0 +1,282 @@
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+accesses	/home/amanda/hemem/src/hemem.h	/^  uint64_t accesses[NPBUFTYPES];$/;"	m	language:C++	struct:hemem_page
+accesses_cnt	/home/amanda/hemem/src/pebs.c	/^uint64_t accesses_cnt[NPBUFTYPES];$/;"	v	language:C++
+addr	/home/amanda/hemem/src/pebs.h	/^  __u64 addr;        \/* if PERF_SAMPLE_ADDR *\/$/;"	m	language:C++	struct:perf_sample
+add_page	/home/amanda/hemem/src/hemem.c	/^void add_page(struct hemem_page *page)$/;"	f	language:C++
+barrier	/home/amanda/hemem/src/hemem.c	/^  pthread_barrier_t barrier;$/;"	m	language:C++	struct:pmemcpy	file:
+BASEP	/home/amanda/hemem/src/hemem.h	/^  BASEP = 1,$/;"	e	language:C++	enum:pagetypes
+BASEPAGE_MASK	/home/amanda/hemem/src/hemem.h	77;"	d	language:C++
+BASEPAGE_SIZE	/home/amanda/hemem/src/hemem.h	72;"	d	language:C++
+BASE_PFN_MASK	/home/amanda/hemem/src/hemem.h	81;"	d	language:C++
+bind_symbol	/home/amanda/hemem/src/interpose.c	/^static void* bind_symbol(const char *sym)$/;"	f	language:C++	file:
+bytes_migrated	/home/amanda/hemem/src/hemem.c	/^uint64_t bytes_migrated = 0;$/;"	v	language:C++
+calc_miss_ratio	/home/amanda/hemem/src/pebs.c	/^static inline double calc_miss_ratio()$/;"	f	language:C++	file:
+CAPACITY	/home/amanda/hemem/src/pebs.h	20;"	d	language:C++
+CC	/home/amanda/hemem/src/Makefile	/^CC = gcc$/;"	m	language:Make
+CFLAGS	/home/amanda/hemem/src/Makefile	/^CFLAGS = -g -Wall -O3 -fPIC$/;"	m	language:Make
+cold_ring	/home/amanda/hemem/src/pebs.c	/^static ring_handle_t cold_ring;$/;"	v	language:C++	file:
+COLD_RING_REQS_THRESHOLD	/home/amanda/hemem/src/pebs.h	19;"	d	language:C++
+COOLING_PAGES	/home/amanda/hemem/src/pebs.h	21;"	d	language:C++
+cools	/home/amanda/hemem/src/pebs.c	/^uint64_t cools = 0;$/;"	v	language:C++
+COOL_IN_PLACE	/home/amanda/hemem/src/pebs.h	39;"	d	language:C++
+copy_threads	/home/amanda/hemem/src/hemem.c	/^pthread_t copy_threads[MAX_COPY_THREADS];$/;"	v	language:C++
+core_accesses_cnt	/home/amanda/hemem/src/pebs.c	/^uint64_t core_accesses_cnt[PEBS_NPROCS];$/;"	v	language:C++
+cr3	/home/amanda/hemem/src/hemem.c	/^uint64_t cr3 = 0;$/;"	v	language:C++
+cr3_set	/home/amanda/hemem/src/hemem.c	/^static bool cr3_set = false;$/;"	v	language:C++	file:
+devdax_offset	/home/amanda/hemem/src/hemem.h	/^  uint64_t devdax_offset;$/;"	m	language:C++	struct:hemem_page
+dramfd	/home/amanda/hemem/src/hemem.c	/^int dramfd = -1;$/;"	v	language:C++
+dramoffset	/home/amanda/hemem/src/hemem.c	/^off_t dramoffset = 0;$/;"	v	language:C++
+DRAMOFFSET_DEFAULT	/home/amanda/hemem/src/hemem.h	65;"	d	language:C++
+drampath	/home/amanda/hemem/src/hemem.c	/^char* drampath = NULL;$/;"	v	language:C++
+DRAMPATH_DEFAULT	/home/amanda/hemem/src/hemem.h	67;"	d	language:C++
+DRAMREAD	/home/amanda/hemem/src/pebs.h	/^  DRAMREAD = 0,$/;"	e	language:C++	enum:pbuftype
+dramsize	/home/amanda/hemem/src/hemem.c	/^uint64_t dramsize = 0;$/;"	v	language:C++
+DRAMSIZE_DEFAULT	/home/amanda/hemem/src/hemem.h	62;"	d	language:C++
+dram_cold_list	/home/amanda/hemem/src/pebs.c	/^static struct fifo_list dram_cold_list;$/;"	v	language:C++	typeref:struct:fifo_list	file:
+dram_devdax_mmap	/home/amanda/hemem/src/hemem.c	/^void *dram_devdax_mmap;$/;"	v	language:C++
+dram_free_list	/home/amanda/hemem/src/pebs.c	/^static struct fifo_list dram_free_list;$/;"	v	language:C++	typeref:struct:fifo_list	file:
+dram_hot_list	/home/amanda/hemem/src/pebs.c	/^static struct fifo_list dram_hot_list;$/;"	v	language:C++	typeref:struct:fifo_list	file:
+dst	/home/amanda/hemem/src/hemem.c	/^  _Atomic void *dst;$/;"	m	language:C++	struct:pmemcpy	file:
+EWMA_FRAC	/home/amanda/hemem/src/pebs.h	30;"	d	language:C++
+FASTMEM	/home/amanda/hemem/src/hemem.h	/^  FASTMEM = 0,$/;"	e	language:C++	enum:memtypes
+fastmem_allocated	/home/amanda/hemem/src/hemem.c	/^uint64_t fastmem_allocated = 0;$/;"	v	language:C++
+fault_thread	/home/amanda/hemem/src/hemem.c	/^pthread_t fault_thread;$/;"	v	language:C++
+fault_thread_cpu	/home/amanda/hemem/src/hemem.c	/^uint64_t fault_thread_cpu = 0;$/;"	v	language:C++
+FAULT_THREAD_CPU_DEFAULT	/home/amanda/hemem/src/hemem.h	86;"	d	language:C++
+find_page	/home/amanda/hemem/src/hemem.c	/^struct hemem_page* find_page(uint64_t va)$/;"	f	language:C++
+free_page_ring	/home/amanda/hemem/src/pebs.c	/^static ring_handle_t free_page_ring;$/;"	v	language:C++	file:
+free_page_ring_lock	/home/amanda/hemem/src/pebs.c	/^static pthread_mutex_t free_page_ring_lock = PTHREAD_MUTEX_INITIALIZER;$/;"	v	language:C++	file:
+get_hemem_page	/home/amanda/hemem/src/hemem.c	/^struct hemem_page* get_hemem_page(uint64_t va)$/;"	f	language:C++
+get_hemem_page	/home/amanda/hemem/src/hemem.h	/^struct hemem_page* get_hemem_page(uint64_t va);$/;"	p	language:C++
+GIGAPAGE_MASK	/home/amanda/hemem/src/hemem.h	79;"	d	language:C++
+GIGAPAGE_SIZE	/home/amanda/hemem/src/hemem.h	74;"	d	language:C++
+GIGA_PFN_MASK	/home/amanda/hemem/src/hemem.h	83;"	d	language:C++
+global_clock	/home/amanda/hemem/src/pebs.c	/^uint64_t global_clock = 0;$/;"	v	language:C++
+handle_fault	/home/amanda/hemem/src/hemem.c	/^void *handle_fault()$/;"	f	language:C++
+handle_fault	/home/amanda/hemem/src/hemem.h	/^void *handle_fault();$/;"	p	language:C++
+handle_missing_fault	/home/amanda/hemem/src/hemem.c	/^void handle_missing_fault(uint64_t page_boundry)$/;"	f	language:C++
+handle_wp_fault	/home/amanda/hemem/src/hemem.c	/^void handle_wp_fault(uint64_t page_boundry)$/;"	f	language:C++
+header	/home/amanda/hemem/src/pebs.h	/^  struct perf_event_header header;$/;"	m	language:C++	struct:perf_sample	typeref:struct:perf_sample::perf_event_header
+hememlogf	/home/amanda/hemem/src/hemem.c	/^FILE* hememlogf;$/;"	v	language:C++
+hemem_clear_bits	/home/amanda/hemem/src/hemem.c	/^void hemem_clear_bits(struct hemem_page *page)$/;"	f	language:C++
+hemem_clear_bits	/home/amanda/hemem/src/hemem.h	/^void hemem_clear_bits(struct hemem_page *page);$/;"	p	language:C++
+hemem_clear_stats	/home/amanda/hemem/src/hemem.c	/^void hemem_clear_stats()$/;"	f	language:C++
+hemem_clear_stats	/home/amanda/hemem/src/hemem.h	/^void hemem_clear_stats();$/;"	p	language:C++
+hemem_clear_stats_full	/home/amanda/hemem/src/hemem.c	/^void hemem_clear_stats_full()$/;"	f	language:C++
+hemem_clear_stats_full	/home/amanda/hemem/src/hemem.h	/^void hemem_clear_stats_full();$/;"	p	language:C++
+hemem_demote_pages	/home/amanda/hemem/src/hemem.h	/^void hemem_demote_pages(uint64_t addr);$/;"	p	language:C++
+hemem_get_bits	/home/amanda/hemem/src/hemem.c	/^uint64_t hemem_get_bits(struct hemem_page *page)$/;"	f	language:C++
+hemem_get_bits	/home/amanda/hemem/src/hemem.h	/^uint64_t hemem_get_bits(struct hemem_page *page);$/;"	p	language:C++
+HEMEM_H	/home/amanda/hemem/src/hemem.h	3;"	d	language:C++
+hemem_init	/home/amanda/hemem/src/hemem.c	/^void hemem_init()$/;"	f	language:C++
+hemem_init	/home/amanda/hemem/src/hemem.h	/^void hemem_init();$/;"	p	language:C++
+HEMEM_LIBS	/home/amanda/hemem/src/Makefile	/^HEMEM_LIBS = $(LIBS) -ldl -lsyscall_intercept -L..\/Hoard\/src -lhoard$/;"	m	language:Make
+hemem_migrate_down	/home/amanda/hemem/src/hemem.c	/^void hemem_migrate_down(struct hemem_page *page, uint64_t nvm_offset)$/;"	f	language:C++
+hemem_migrate_down	/home/amanda/hemem/src/hemem.h	/^void hemem_migrate_down(struct hemem_page *page, uint64_t nvm_offset);$/;"	p	language:C++
+hemem_migrate_up	/home/amanda/hemem/src/hemem.c	/^void hemem_migrate_up(struct hemem_page *page, uint64_t dram_offset)$/;"	f	language:C++
+hemem_migrate_up	/home/amanda/hemem/src/hemem.h	/^void hemem_migrate_up(struct hemem_page *page, uint64_t dram_offset);$/;"	p	language:C++
+hemem_mmap	/home/amanda/hemem/src/hemem.c	/^void* hemem_mmap(void *addr, size_t length, int prot, int flags, int fd, off_t offset)$/;"	f	language:C++
+hemem_mmap	/home/amanda/hemem/src/hemem.h	/^void* hemem_mmap(void *addr, size_t length, int prot, int flags, int fd, off_t offset);$/;"	p	language:C++
+hemem_mmap_populate	/home/amanda/hemem/src/hemem.c	/^static void hemem_mmap_populate(void* addr, size_t length)$/;"	f	language:C++	file:
+hemem_munmap	/home/amanda/hemem/src/hemem.c	/^int hemem_munmap(void* addr, size_t length)$/;"	f	language:C++
+hemem_munmap	/home/amanda/hemem/src/hemem.h	/^int hemem_munmap(void* addr, size_t length);$/;"	p	language:C++
+hemem_page	/home/amanda/hemem/src/hemem.h	/^struct hemem_page {$/;"	s	language:C++
+hemem_pages_cnt	/home/amanda/hemem/src/pebs.c	/^uint64_t hemem_pages_cnt = 0;$/;"	v	language:C++
+hemem_parallel_memcpy	/home/amanda/hemem/src/hemem.c	/^static void hemem_parallel_memcpy(void *dst, void *src, size_t length)$/;"	f	language:C++	file:
+hemem_parallel_memcpy_thread	/home/amanda/hemem/src/hemem.c	/^void *hemem_parallel_memcpy_thread(void *arg)$/;"	f	language:C++
+hemem_parallel_memset	/home/amanda/hemem/src/hemem.c	/^static void hemem_parallel_memset(void* addr, int c, size_t n)$/;"	f	language:C++	file:
+HEMEM_PEBS_H	/home/amanda/hemem/src/pebs.h	2;"	d	language:C++
+hemem_print_stats	/home/amanda/hemem/src/hemem.c	/^void hemem_print_stats(FILE *fd)$/;"	f	language:C++
+hemem_print_stats	/home/amanda/hemem/src/hemem.h	/^void hemem_print_stats(FILE *fd);$/;"	p	language:C++
+hemem_promote_pages	/home/amanda/hemem/src/hemem.h	/^void hemem_promote_pages(uint64_t addr);$/;"	p	language:C++
+hemem_shutdown	/home/amanda/hemem/src/interpose.c	/^static __attribute__((destructor)) void hemem_shutdown(void)$/;"	f	language:C++	file:
+hemem_start_cpu	/home/amanda/hemem/src/hemem.c	/^uint64_t hemem_start_cpu = 0;$/;"	v	language:C++
+hemem_start_timing	/home/amanda/hemem/src/hemem.c	/^void hemem_start_timing(void)$/;"	f	language:C++
+hemem_start_timing	/home/amanda/hemem/src/hemem.h	/^void hemem_start_timing(void);$/;"	p	language:C++
+hemem_stats_thread	/home/amanda/hemem/src/hemem.c	/^static void *hemem_stats_thread()$/;"	f	language:C++	file:
+hemem_stop	/home/amanda/hemem/src/hemem.c	/^void hemem_stop()$/;"	f	language:C++
+hemem_stop	/home/amanda/hemem/src/hemem.h	/^void hemem_stop();$/;"	p	language:C++
+hemem_stop_timing	/home/amanda/hemem/src/hemem.c	/^void hemem_stop_timing(void)$/;"	f	language:C++
+hemem_stop_timing	/home/amanda/hemem/src/hemem.h	/^void hemem_stop_timing(void);$/;"	p	language:C++
+hemem_tlb_shootdown	/home/amanda/hemem/src/hemem.c	/^void hemem_tlb_shootdown(uint64_t va)$/;"	f	language:C++
+hemem_tlb_shootdown	/home/amanda/hemem/src/hemem.h	/^void hemem_tlb_shootdown(uint64_t va);$/;"	p	language:C++
+hemem_wp_page	/home/amanda/hemem/src/hemem.c	/^void hemem_wp_page(struct hemem_page *page, bool protect)$/;"	f	language:C++
+hemem_wp_page	/home/amanda/hemem/src/hemem.h	/^void hemem_wp_page(struct hemem_page *page, bool protect);$/;"	p	language:C++
+hh	/home/amanda/hemem/src/hemem.h	/^  UT_hash_handle hh;$/;"	m	language:C++	struct:hemem_page
+hook	/home/amanda/hemem/src/interpose.c	/^static int hook(long syscall_number, long arg0, long arg1, long arg2, long arg3,	long arg4, long arg5,	long *result)$/;"	f	language:C++	file:
+hot	/home/amanda/hemem/src/hemem.h	/^  bool hot;$/;"	m	language:C++	struct:hemem_page
+HOT_READ_THRESHOLD	/home/amanda/hemem/src/pebs.h	14;"	d	language:C++
+hot_ring	/home/amanda/hemem/src/pebs.c	/^static ring_handle_t hot_ring;$/;"	v	language:C++	file:
+HOT_RING_REQS_THRESHOLD	/home/amanda/hemem/src/pebs.h	18;"	d	language:C++
+HOT_WRITE_THRESHOLD	/home/amanda/hemem/src/pebs.h	15;"	d	language:C++
+HUGEP	/home/amanda/hemem/src/hemem.h	/^  HUGEP = 0,$/;"	e	language:C++	enum:pagetypes
+HUGEPAGE_MASK	/home/amanda/hemem/src/hemem.h	78;"	d	language:C++
+HUGEPAGE_SIZE	/home/amanda/hemem/src/hemem.h	73;"	d	language:C++
+HUGE_PFN_MASK	/home/amanda/hemem/src/hemem.h	82;"	d	language:C++
+INCLUDES	/home/amanda/hemem/src/Makefile	/^INCLUDES = -I..\/linux\/usr\/include\/$/;"	m	language:Make
+init	/home/amanda/hemem/src/interpose.c	/^static __attribute__((constructor)) void init(void)$/;"	f	language:C++	file:
+internal_call	/home/amanda/hemem/src/hemem.c	/^__thread bool internal_call = false;$/;"	v	language:C++
+in_dram	/home/amanda/hemem/src/hemem.h	/^  bool in_dram;$/;"	m	language:C++	struct:hemem_page
+ip	/home/amanda/hemem/src/pebs.h	/^  __u64	ip;$/;"	m	language:C++	struct:perf_sample
+is_init	/home/amanda/hemem/src/hemem.c	/^bool is_init = false;$/;"	v	language:C++
+LDFLAGS	/home/amanda/hemem/src/Makefile	/^LDFLAGS = -shared$/;"	m	language:Make
+length	/home/amanda/hemem/src/hemem.c	/^  _Atomic size_t length;$/;"	m	language:C++	struct:pmemcpy	file:
+libc_free	/home/amanda/hemem/src/interpose.c	/^void (*libc_free)(void* ptr) = NULL;$/;"	v	language:C++
+libc_malloc	/home/amanda/hemem/src/interpose.c	/^void* (*libc_malloc)(size_t size) = NULL;$/;"	v	language:C++
+libc_mmap	/home/amanda/hemem/src/interpose.c	/^void* (*libc_mmap)(void *addr, size_t length, int prot, int flags, int fd, off_t offset) = NULL;$/;"	v	language:C++
+libc_munmap	/home/amanda/hemem/src/interpose.c	/^int (*libc_munmap)(void *addr, size_t length) = NULL;$/;"	v	language:C++
+LIBS	/home/amanda/hemem/src/Makefile	/^LIBS = -lm -lpthread$/;"	m	language:Make
+list	/home/amanda/hemem/src/hemem.h	/^  struct fifo_list *list;$/;"	m	language:C++	struct:hemem_page	typeref:struct:hemem_page::fifo_list
+local_clock	/home/amanda/hemem/src/hemem.h	/^  uint64_t local_clock;$/;"	m	language:C++	struct:hemem_page
+lock	/home/amanda/hemem/src/hemem.c	/^  pthread_mutex_t lock;$/;"	m	language:C++	struct:pmemcpy	file:
+LOG	/home/amanda/hemem/src/hemem.h	94;"	d	language:C++
+LOG_STATS	/home/amanda/hemem/src/hemem.h	117;"	d	language:C++
+log_time	/home/amanda/hemem/src/hemem.h	/^static inline void log_time(const char* fmt, ...)$/;"	f	language:C++
+LOG_TIME	/home/amanda/hemem/src/hemem.h	113;"	d	language:C++
+make_cold	/home/amanda/hemem/src/pebs.c	/^void make_cold(struct hemem_page* page)$/;"	f	language:C++
+make_cold_request	/home/amanda/hemem/src/pebs.c	/^void make_cold_request(struct hemem_page* page)$/;"	f	language:C++
+make_hot	/home/amanda/hemem/src/pebs.c	/^void make_hot(struct hemem_page* page)$/;"	f	language:C++
+make_hot_request	/home/amanda/hemem/src/pebs.c	/^void make_hot_request(struct hemem_page* page)$/;"	f	language:C++
+MAX_COPY_THREADS	/home/amanda/hemem/src/hemem.h	142;"	d	language:C++
+MAX_UFFD_MSGS	/home/amanda/hemem/src/hemem.h	141;"	d	language:C++
+memcpys	/home/amanda/hemem/src/hemem.c	/^uint64_t memcpys = 0;$/;"	v	language:C++
+memsets	/home/amanda/hemem/src/hemem.c	/^uint64_t memsets = 0;$/;"	v	language:C++
+memtypes	/home/amanda/hemem/src/hemem.h	/^enum memtypes {$/;"	g	language:C++
+mem_allocated	/home/amanda/hemem/src/hemem.c	/^uint64_t mem_allocated = 0;$/;"	v	language:C++
+MEM_BARRIER	/home/amanda/hemem/src/hemem.h	46;"	d	language:C++
+mem_mmaped	/home/amanda/hemem/src/hemem.c	/^uint64_t mem_mmaped = 0;$/;"	v	language:C++
+migrating	/home/amanda/hemem/src/hemem.h	/^  volatile bool migrating;$/;"	m	language:C++	struct:hemem_page
+migrations_down	/home/amanda/hemem/src/hemem.c	/^uint64_t migrations_down = 0;$/;"	v	language:C++
+migrations_down	/home/amanda/hemem/src/hemem.h	/^  uint64_t migrations_up, migrations_down;$/;"	m	language:C++	struct:hemem_page
+migrations_up	/home/amanda/hemem/src/hemem.c	/^uint64_t migrations_up = 0;$/;"	v	language:C++
+migrations_up	/home/amanda/hemem/src/hemem.h	/^  uint64_t migrations_up, migrations_down;$/;"	m	language:C++	struct:hemem_page
+migration_thread_cpu	/home/amanda/hemem/src/pebs.c	/^uint64_t migration_thread_cpu;$/;"	v	language:C++
+MIGRATION_THREAD_CPU_DEFAULT	/home/amanda/hemem/src/pebs.h	33;"	d	language:C++
+migration_waits	/home/amanda/hemem/src/hemem.c	/^uint64_t migration_waits = 0;$/;"	v	language:C++
+missing_faults_handled	/home/amanda/hemem/src/hemem.c	/^uint64_t missing_faults_handled = 0;$/;"	v	language:C++
+miss_ratio	/home/amanda/hemem/src/pebs.c	/^_Atomic volatile double miss_ratio = -1.0;$/;"	v	language:C++
+miss_ratio_f	/home/amanda/hemem/src/pebs.c	/^FILE *miss_ratio_f = NULL;$/;"	v	language:C++
+mmap_filter	/home/amanda/hemem/src/interpose.c	/^static int mmap_filter(void *addr, size_t length, int prot, int flags, int fd, off_t offset, uint64_t *result)$/;"	f	language:C++	file:
+mmgr_remove	/home/amanda/hemem/src/hemem.h	123;"	d	language:C++
+mmgr_remove	/home/amanda/hemem/src/hemem.h	129;"	d	language:C++
+mmgr_remove	/home/amanda/hemem/src/hemem.h	135;"	d	language:C++
+mmgr_stats	/home/amanda/hemem/src/hemem.h	124;"	d	language:C++
+mmgr_stats	/home/amanda/hemem/src/hemem.h	130;"	d	language:C++
+mmgr_stats	/home/amanda/hemem/src/hemem.h	136;"	d	language:C++
+munmap_filter	/home/amanda/hemem/src/interpose.c	/^static int munmap_filter(void *addr, size_t length, uint64_t* result)$/;"	f	language:C++	file:
+naccesses	/home/amanda/hemem/src/hemem.h	/^  uint64_t naccesses;$/;"	m	language:C++	struct:hemem_page
+need_cool_dram	/home/amanda/hemem/src/pebs.c	/^volatile bool need_cool_dram = false;$/;"	v	language:C++
+need_cool_nvm	/home/amanda/hemem/src/pebs.c	/^volatile bool need_cool_nvm = false;$/;"	v	language:C++
+next	/home/amanda/hemem/src/hemem.h	/^  struct hemem_page *next, *prev;$/;"	m	language:C++	struct:hemem_page	typeref:struct:hemem_page::hemem_page
+NMEMTYPES	/home/amanda/hemem/src/hemem.h	/^  NMEMTYPES,$/;"	e	language:C++	enum:memtypes
+NPAGETYPES	/home/amanda/hemem/src/hemem.h	/^  NPAGETYPES$/;"	e	language:C++	enum:pagetypes
+NPBUFTYPES	/home/amanda/hemem/src/pebs.h	/^  NPBUFTYPES$/;"	e	language:C++	enum:pbuftype
+NUM_CHANNS	/home/amanda/hemem/src/hemem.h	43;"	d	language:C++
+num_cores	/home/amanda/hemem/src/hemem.c	/^uint64_t num_cores = 0;$/;"	v	language:C++
+nvmfd	/home/amanda/hemem/src/hemem.c	/^int nvmfd = -1;$/;"	v	language:C++
+nvmoffset	/home/amanda/hemem/src/hemem.c	/^off_t nvmoffset = 0;$/;"	v	language:C++
+NVMOFFSET_DEFAULT	/home/amanda/hemem/src/hemem.h	64;"	d	language:C++
+nvmpath	/home/amanda/hemem/src/hemem.c	/^char* nvmpath = NULL;$/;"	v	language:C++
+NVMPATH_DEFAULT	/home/amanda/hemem/src/hemem.h	68;"	d	language:C++
+NVMREAD	/home/amanda/hemem/src/pebs.h	/^  NVMREAD = 1,  $/;"	e	language:C++	enum:pbuftype
+nvmsize	/home/amanda/hemem/src/hemem.c	/^uint64_t nvmsize = 0;$/;"	v	language:C++
+NVMSIZE_DEFAULT	/home/amanda/hemem/src/hemem.h	61;"	d	language:C++
+nvm_cold_list	/home/amanda/hemem/src/pebs.c	/^static struct fifo_list nvm_cold_list;$/;"	v	language:C++	typeref:struct:fifo_list	file:
+nvm_devdax_mmap	/home/amanda/hemem/src/hemem.c	/^void *nvm_devdax_mmap;$/;"	v	language:C++
+nvm_free_list	/home/amanda/hemem/src/pebs.c	/^static struct fifo_list nvm_free_list;$/;"	v	language:C++	typeref:struct:fifo_list	file:
+nvm_hot_list	/home/amanda/hemem/src/pebs.c	/^static struct fifo_list nvm_hot_list;$/;"	v	language:C++	typeref:struct:fifo_list	file:
+old_internal_call	/home/amanda/hemem/src/hemem.c	/^__thread bool old_internal_call = false;$/;"	v	language:C++
+other_pages_cnt	/home/amanda/hemem/src/pebs.c	/^uint64_t other_pages_cnt = 0;$/;"	v	language:C++
+pagefault	/home/amanda/hemem/src/hemem.h	121;"	d	language:C++
+pagefault	/home/amanda/hemem/src/hemem.h	127;"	d	language:C++
+pagefault	/home/amanda/hemem/src/hemem.h	133;"	d	language:C++
+pages	/home/amanda/hemem/src/hemem.c	/^struct hemem_page *pages = NULL;$/;"	v	language:C++	typeref:struct:hemem_page
+pagesize_to_pt	/home/amanda/hemem/src/hemem.h	/^static inline enum pagetypes pagesize_to_pt(uint64_t pagesize)$/;"	f	language:C++
+pages_allocated	/home/amanda/hemem/src/hemem.c	/^uint64_t pages_allocated = 0;$/;"	v	language:C++
+pages_freed	/home/amanda/hemem/src/hemem.c	/^uint64_t pages_freed = 0;$/;"	v	language:C++
+pages_lock	/home/amanda/hemem/src/hemem.c	/^pthread_mutex_t pages_lock = PTHREAD_MUTEX_INITIALIZER;$/;"	v	language:C++
+pagetypes	/home/amanda/hemem/src/hemem.h	/^enum pagetypes {$/;"	g	language:C++
+page_lock	/home/amanda/hemem/src/hemem.h	/^  pthread_mutex_t page_lock;$/;"	m	language:C++	struct:hemem_page
+PAGE_ROUND_UP	/home/amanda/hemem/src/hemem.c	497;"	d	language:C++	file:
+PAGE_SIZE	/home/amanda/hemem/src/hemem.h	75;"	d	language:C++
+paging_init	/home/amanda/hemem/src/hemem.h	122;"	d	language:C++
+paging_init	/home/amanda/hemem/src/hemem.h	128;"	d	language:C++
+paging_init	/home/amanda/hemem/src/hemem.h	134;"	d	language:C++
+partial_cool	/home/amanda/hemem/src/pebs.c	/^static void partial_cool(struct fifo_list *hot, struct fifo_list *cold, bool dram)$/;"	f	language:C++	file:
+partial_cool	/home/amanda/hemem/src/pebs.c	/^struct hemem_page* partial_cool(struct fifo_list *hot, struct fifo_list *cold, bool dram, struct hemem_page* current)$/;"	f	language:C++
+pbuftype	/home/amanda/hemem/src/pebs.h	/^enum pbuftype {$/;"	g	language:C++
+pebs_allocate_page	/home/amanda/hemem/src/pebs.c	/^static struct hemem_page* pebs_allocate_page()$/;"	f	language:C++	file:
+PEBS_COOLING_THRESHOLD	/home/amanda/hemem/src/pebs.h	16;"	d	language:C++
+pebs_init	/home/amanda/hemem/src/pebs.c	/^void pebs_init(void)$/;"	f	language:C++
+pebs_init	/home/amanda/hemem/src/pebs.h	/^void pebs_init(void);$/;"	p	language:C++
+pebs_kswapd	/home/amanda/hemem/src/pebs.h	/^void *pebs_kswapd();$/;"	p	language:C++
+PEBS_KSWAPD_INTERVAL	/home/amanda/hemem/src/pebs.h	12;"	d	language:C++
+PEBS_KSWAPD_MIGRATE_RATE	/home/amanda/hemem/src/pebs.h	13;"	d	language:C++
+pebs_migrate_down	/home/amanda/hemem/src/pebs.c	/^static void pebs_migrate_down(struct hemem_page *page, uint64_t offset)$/;"	f	language:C++	file:
+pebs_migrate_up	/home/amanda/hemem/src/pebs.c	/^static void pebs_migrate_up(struct hemem_page *page, uint64_t offset)$/;"	f	language:C++	file:
+PEBS_NPROCS	/home/amanda/hemem/src/pebs.h	23;"	d	language:C++
+pebs_pagefault	/home/amanda/hemem/src/pebs.c	/^struct hemem_page* pebs_pagefault(void)$/;"	f	language:C++
+pebs_pagefault	/home/amanda/hemem/src/pebs.h	/^struct hemem_page* pebs_pagefault(void);$/;"	p	language:C++
+pebs_pagefault_unlocked	/home/amanda/hemem/src/pebs.h	/^struct hemem_page* pebs_pagefault_unlocked(void);$/;"	p	language:C++
+pebs_policy_thread	/home/amanda/hemem/src/pebs.c	/^void *pebs_policy_thread()$/;"	f	language:C++
+pebs_remove_page	/home/amanda/hemem/src/pebs.c	/^void pebs_remove_page(struct hemem_page *page)$/;"	f	language:C++
+pebs_remove_page	/home/amanda/hemem/src/pebs.h	/^void pebs_remove_page(struct hemem_page *page);$/;"	p	language:C++
+pebs_scan_thread	/home/amanda/hemem/src/pebs.c	/^void *pebs_scan_thread()$/;"	f	language:C++
+pebs_shutdown	/home/amanda/hemem/src/pebs.c	/^void pebs_shutdown()$/;"	f	language:C++
+pebs_shutdown	/home/amanda/hemem/src/pebs.h	/^void pebs_shutdown();$/;"	p	language:C++
+pebs_start_cpu	/home/amanda/hemem/src/pebs.c	/^uint64_t pebs_start_cpu;$/;"	v	language:C++
+pebs_stats	/home/amanda/hemem/src/pebs.c	/^void pebs_stats()$/;"	f	language:C++
+pebs_stats	/home/amanda/hemem/src/pebs.h	/^void pebs_stats();$/;"	p	language:C++
+perf_event_open	/home/amanda/hemem/src/pebs.c	/^static long perf_event_open(struct perf_event_attr *hw_event, pid_t pid, $/;"	f	language:C++	file:
+perf_page	/home/amanda/hemem/src/pebs.c	/^static struct perf_event_mmap_page *perf_page[PEBS_NPROCS][NPBUFTYPES];$/;"	v	language:C++	typeref:struct:perf_event_mmap_page	file:
+PERF_PAGES	/home/amanda/hemem/src/pebs.h	24;"	d	language:C++
+perf_sample	/home/amanda/hemem/src/pebs.h	/^struct perf_sample {$/;"	s	language:C++
+perf_setup	/home/amanda/hemem/src/pebs.c	/^static struct perf_event_mmap_page* perf_setup(__u64 config, __u64 config1, __u64 cpu, __u64 type)$/;"	f	language:C++	file:
+pfd	/home/amanda/hemem/src/pebs.c	/^int pfd[PEBS_NPROCS][NPBUFTYPES];$/;"	v	language:C++
+pid	/home/amanda/hemem/src/pebs.h	/^  __u32 pid, tid;    \/* if PERF_SAMPLE_TID *\/$/;"	m	language:C++	struct:perf_sample
+pmemcpy	/home/amanda/hemem/src/hemem.c	/^static struct pmemcpy pmemcpy;$/;"	v	language:C++	typeref:struct:pmemcpy	file:
+pmemcpy	/home/amanda/hemem/src/hemem.c	/^struct pmemcpy {$/;"	s	language:C++	file:
+policy_shutdown	/home/amanda/hemem/src/hemem.h	125;"	d	language:C++
+policy_shutdown	/home/amanda/hemem/src/hemem.h	131;"	d	language:C++
+policy_shutdown	/home/amanda/hemem/src/hemem.h	137;"	d	language:C++
+present	/home/amanda/hemem/src/hemem.h	/^  bool present;$/;"	m	language:C++	struct:hemem_page
+prev	/home/amanda/hemem/src/hemem.h	/^  struct hemem_page *next, *prev;$/;"	m	language:C++	struct:hemem_page	typeref:struct:hemem_page::
+pt	/home/amanda/hemem/src/hemem.h	/^  enum pagetypes pt;$/;"	m	language:C++	struct:hemem_page	typeref:enum:hemem_page::pagetypes
+pt_to_pagesize	/home/amanda/hemem/src/hemem.h	/^static inline uint64_t pt_to_pagesize(enum pagetypes pt)$/;"	f	language:C++
+remove_page	/home/amanda/hemem/src/hemem.c	/^void remove_page(struct hemem_page *page)$/;"	f	language:C++
+ring_present	/home/amanda/hemem/src/hemem.h	/^  bool ring_present;$/;"	m	language:C++	struct:hemem_page
+SAMPLE_PERIOD	/home/amanda/hemem/src/pebs.h	25;"	d	language:C++
+scanning_thread_cpu	/home/amanda/hemem/src/pebs.c	/^uint64_t scanning_thread_cpu;$/;"	v	language:C++
+SCANNING_THREAD_CPU_DEFAULT	/home/amanda/hemem/src/pebs.h	32;"	d	language:C++
+SIZE_PER_DMA_REQUEST	/home/amanda/hemem/src/hemem.h	44;"	d	language:C++
+SLOWMEM	/home/amanda/hemem/src/hemem.h	/^  SLOWMEM = 1,$/;"	e	language:C++	enum:memtypes
+slowmem_allocated	/home/amanda/hemem/src/hemem.c	/^uint64_t slowmem_allocated = 0;$/;"	v	language:C++
+src	/home/amanda/hemem/src/hemem.c	/^  _Atomic void *src;$/;"	m	language:C++	struct:pmemcpy	file:
+start_dram_page	/home/amanda/hemem/src/pebs.c	/^static struct hemem_page* start_dram_page = NULL;$/;"	v	language:C++	typeref:struct:hemem_page	file:
+start_nvm_page	/home/amanda/hemem/src/pebs.c	/^static struct hemem_page* start_nvm_page = NULL;$/;"	v	language:C++	typeref:struct:hemem_page	file:
+START_THREAD_DEFAULT	/home/amanda/hemem/src/hemem.h	85;"	d	language:C++
+statsf	/home/amanda/hemem/src/hemem.c	/^FILE* statsf;$/;"	v	language:C++
+stats_thread	/home/amanda/hemem/src/hemem.c	/^pthread_t stats_thread;$/;"	v	language:C++
+STATS_THREAD	/home/amanda/hemem/src/hemem.h	40;"	d	language:C++
+stats_thread_cpu	/home/amanda/hemem/src/hemem.c	/^uint64_t stats_thread_cpu = 0;$/;"	v	language:C++
+STATS_THREAD_CPU_DEFAULT	/home/amanda/hemem/src/hemem.h	87;"	d	language:C++
+throttle_cnt	/home/amanda/hemem/src/pebs.c	/^uint64_t throttle_cnt = 0;$/;"	v	language:C++
+tid	/home/amanda/hemem/src/pebs.h	/^  __u32 pid, tid;    \/* if PERF_SAMPLE_TID *\/$/;"	m	language:C++	struct:perf_sample
+timef	/home/amanda/hemem/src/hemem.c	/^FILE* timef;$/;"	v	language:C++
+timing	/home/amanda/hemem/src/hemem.c	/^bool timing = false;$/;"	v	language:C++
+total_pages_cnt	/home/amanda/hemem/src/pebs.c	/^uint64_t total_pages_cnt = 0;$/;"	v	language:C++
+tot_accesses	/home/amanda/hemem/src/hemem.h	/^  uint64_t tot_accesses[NPBUFTYPES];$/;"	m	language:C++	struct:hemem_page
+uffd	/home/amanda/hemem/src/hemem.c	/^long uffd = -1;$/;"	v	language:C++
+unthrottle_cnt	/home/amanda/hemem/src/pebs.c	/^uint64_t unthrottle_cnt = 0;$/;"	v	language:C++
+update_current_cool_page	/home/amanda/hemem/src/pebs.c	/^void update_current_cool_page(struct hemem_page** cur_cool_in_dram, struct hemem_page** cur_cool_in_nvm, struct hemem_page* page)$/;"	f	language:C++
+USE_DMA	/home/amanda/hemem/src/hemem.h	42;"	d	language:C++
+va	/home/amanda/hemem/src/hemem.h	/^  uint64_t va;$/;"	m	language:C++	struct:hemem_page
+weight	/home/amanda/hemem/src/pebs.h	/^  __u64 weight;      \/* if PERF_SAMPLE_WEIGHT *\/$/;"	m	language:C++	struct:perf_sample
+wp_faults_handled	/home/amanda/hemem/src/hemem.c	/^uint64_t wp_faults_handled = 0;$/;"	v	language:C++
+write_zeros	/home/amanda/hemem/src/hemem.c	/^  _Atomic bool write_zeros;$/;"	m	language:C++	struct:pmemcpy	file:
+written	/home/amanda/hemem/src/hemem.h	/^  bool written;$/;"	m	language:C++	struct:hemem_page
+zero_pages_cnt	/home/amanda/hemem/src/pebs.c	/^uint64_t zero_pages_cnt = 0;$/;"	v	language:C++
+_Atomic	/home/amanda/hemem/src/hemem.h	18;"	d	language:C++
+_GNU_SOURCE	/home/amanda/hemem/src/hemem.c	1;"	d	language:C++	file:
+_GNU_SOURCE	/home/amanda/hemem/src/pebs.c	1;"	d	language:C++	file:
+__USE_GNU	/home/amanda/hemem/src/interpose.c	7;"	d	language:C++	file:

@@ -1,0 +1,46 @@
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+add_process	/home/amanda/hemem/src/app/hemem-app.c	/^int add_process()$/;"	f	language:C++
+alloc_space	/home/amanda/hemem/src/app/hemem-app.c	/^struct alloc_response* alloc_space(void *addr, size_t length)$/;"	f	language:C++
+bind_symbol	/home/amanda/hemem/src/app/interpose.c	/^static void* bind_symbol(const char *sym)$/;"	f	language:C++	file:
+channel_client_init	/home/amanda/hemem/src/app/channel-app.c	/^int channel_client_init(enum channel_type type)$/;"	f	language:C++
+channel_lock	/home/amanda/hemem/src/app/hemem-app.c	/^pthread_mutex_t channel_lock;$/;"	v	language:C++
+dramfd	/home/amanda/hemem/src/app/hemem-app.c	/^int dramfd = -1;$/;"	v	language:C++
+enable_remap	/home/amanda/hemem/src/app/hemem-app.c	/^volatile bool enable_remap = false;$/;"	v	language:C++
+free_space	/home/amanda/hemem/src/app/hemem-app.c	/^int free_space(void *addr, size_t length)$/;"	f	language:C++
+get_uffd	/home/amanda/hemem/src/app/hemem-app.c	/^int get_uffd(long uffd)$/;"	f	language:C++
+handle_remap	/home/amanda/hemem/src/app/hemem-app.c	/^void *handle_remap()$/;"	f	language:C++
+hemem_app_init	/home/amanda/hemem/src/app/hemem-app.c	/^void hemem_app_init()$/;"	f	language:C++
+hemem_app_stop	/home/amanda/hemem/src/app/hemem-app.c	/^void hemem_app_stop()$/;"	f	language:C++
+hemem_mmap	/home/amanda/hemem/src/app/hemem-app.c	/^void* hemem_mmap(void *addr, size_t length, int prot, int flags, int fd, off_t offset)$/;"	f	language:C++
+hemem_mmap_populate	/home/amanda/hemem/src/app/hemem-app.c	/^static void hemem_mmap_populate(void* addr, size_t length)$/;"	f	language:C++	file:
+hemem_munmap	/home/amanda/hemem/src/app/hemem-app.c	/^int hemem_munmap(void* addr, size_t length)$/;"	f	language:C++
+hemem_shutdown	/home/amanda/hemem/src/app/interpose.c	/^static __attribute__((destructor)) void hemem_shutdown(void)$/;"	f	language:C++	file:
+hook	/home/amanda/hemem/src/app/interpose.c	/^static int hook(long syscall_number, long arg0, long arg1, long arg2, long arg3,	long arg4, long arg5,	long *result)$/;"	f	language:C++	file:
+init	/home/amanda/hemem/src/app/interpose.c	/^static __attribute__((constructor)) void init(void)$/;"	f	language:C++	file:
+internal_call	/home/amanda/hemem/src/app/hemem-app.c	/^__thread bool internal_call = false;$/;"	v	language:C++
+is_init	/home/amanda/hemem/src/app/hemem-app.c	/^bool is_init = false;$/;"	v	language:C++
+libc_free	/home/amanda/hemem/src/app/interpose.c	/^void (*libc_free)(void* ptr) = NULL;$/;"	v	language:C++
+libc_malloc	/home/amanda/hemem/src/app/interpose.c	/^void* (*libc_malloc)(size_t size) = NULL;$/;"	v	language:C++
+libc_mmap	/home/amanda/hemem/src/app/interpose.c	/^void* (*libc_mmap)(void *addr, size_t length, int prot, int flags, int fd, off_t offset) = NULL;$/;"	v	language:C++
+libc_munmap	/home/amanda/hemem/src/app/interpose.c	/^int (*libc_munmap)(void *addr, size_t length) = NULL;$/;"	v	language:C++
+libc_sbrk	/home/amanda/hemem/src/app/interpose.c	/^void* (*libc_sbrk)(intptr_t increment) = NULL;$/;"	v	language:C++
+LLAMA_SIZE	/home/amanda/hemem/src/app/interpose.c	98;"	d	language:C++	file:
+mmap_filter	/home/amanda/hemem/src/app/interpose.c	/^static int mmap_filter(void *addr, size_t length, int prot, int flags, int fd, off_t offset, uint64_t *result)$/;"	f	language:C++	file:
+msg_id	/home/amanda/hemem/src/app/hemem-app.c	/^uint64_t msg_id = 0;$/;"	v	language:C++
+munmap_filter	/home/amanda/hemem/src/app/interpose.c	/^static int munmap_filter(void *addr, size_t length, uint64_t* result)$/;"	f	language:C++	file:
+nvmfd	/home/amanda/hemem/src/app/hemem-app.c	/^int nvmfd = -1;$/;"	v	language:C++
+PAGE_ROUND_UP	/home/amanda/hemem/src/app/hemem-app.c	524;"	d	language:C++	file:
+pid	/home/amanda/hemem/src/app/hemem-app.c	/^pid_t pid;$/;"	v	language:C++
+process_request	/home/amanda/hemem/src/app/hemem-app.c	/^void* process_request(int fd, void* request)$/;"	f	language:C++
+record_remap_fd	/home/amanda/hemem/src/app/hemem-app.c	/^int record_remap_fd()$/;"	f	language:C++
+remap_fd	/home/amanda/hemem/src/app/hemem-app.c	/^int remap_fd;$/;"	v	language:C++
+remap_page	/home/amanda/hemem/src/app/hemem-app.c	/^void remap_page(struct hemem_page_app* page)$/;"	f	language:C++
+remap_thread	/home/amanda/hemem/src/app/hemem-app.c	/^pthread_t remap_thread;$/;"	v	language:C++
+remove_process	/home/amanda/hemem/src/app/hemem-app.c	/^int remove_process()$/;"	f	language:C++
+request_fd	/home/amanda/hemem/src/app/hemem-app.c	/^int request_fd;$/;"	v	language:C++
+required_dram	/home/amanda/hemem/src/app/hemem-app.c	/^uint64_t required_dram = DRAMSIZE;$/;"	v	language:C++
+response	/home/amanda/hemem/src/app/hemem-app.c	/^static __thread struct msg_header *response;$/;"	v	language:C++	typeref:struct:msg_header	file:
+target_miss_ratio	/home/amanda/hemem/src/app/hemem-app.c	/^double target_miss_ratio =  0.1;$/;"	v	language:C++
+uffd	/home/amanda/hemem/src/app/hemem-app.c	/^long uffd = -1;$/;"	v	language:C++
+_GNU_SOURCE	/home/amanda/hemem/src/app/hemem-app.c	1;"	d	language:C++	file:
+__USE_GNU	/home/amanda/hemem/src/app/interpose.c	8;"	d	language:C++	file:
